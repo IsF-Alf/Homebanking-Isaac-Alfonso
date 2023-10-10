@@ -1,4 +1,60 @@
-#app{
-    background-color: rgba(107, 99, 136, 0.479);
+#app {
+    background-color: rgb(236, 234, 241);
     min-height: 100vh;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+header {
+    height: 25vh;
+}
+nav{
+    background-color: rgb(82, 9, 150);
+    width: 100vw;
+}
+.navLink{
+    height: 5vh;
+    width: 30vw;
+}
+
+.navLink>a{
+    height: 2rem;
+    padding-left: 8px;
+    padding-right: 8px;
+    text-decoration: none;
+    color: white;
+    border: 1px solid rgb(197, 156, 23);
+    border-radius: 8px;
+}
+.imgLogo{
+    height: 15vh;
+}
+
+main {
+    padding-top: 2rem;
+    height: 65vh;
+    gap: 3rem !important;
+}
+
+footer {
+    height: 10vh;
+}
+
+h1 {    
+    text-align: center;
+    width: 30vw;
+    color: rgb(37, 3, 68) !important;
+    background-color: rgba(91, 92, 54, 0.329);
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-radius: 1rem;
+    margin-top: 1rem !important;
+}
+.transactionDebit{
+    color: red !important;
+}
+.transactionCredit{
+    color: green !important;
 }

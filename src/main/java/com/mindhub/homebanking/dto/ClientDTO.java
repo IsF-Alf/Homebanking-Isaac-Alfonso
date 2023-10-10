@@ -17,7 +17,7 @@ public class ClientDTO {
         firstName = client.getFirstName();
         lastName = client.getLastName();
         email = client.getEmail();
-        accounts= client.getAccounts().stream().map(account -> new AccountDTO(account)).collect(Collectors.toList());
+        accounts = client.getAccounts().stream().map(account -> new AccountDTO(account)).collect(Collectors.toList());
     }
 
     public Long getId() {
