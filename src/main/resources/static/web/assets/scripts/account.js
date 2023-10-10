@@ -3,9 +3,6 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
-      firstName: "",
-      lastName: "",
-      email: "",
       clientsInformation: {},
       accounts: [],
     };
@@ -21,21 +18,5 @@ createApp({
         console.log(this.accounts);
       })
       .catch((error) => console.log(error));
-  },
-  methods: {
-    addUser() {
-      const clientsData = {
-        firstName: this.firstName,
-        lastName: this.lastName,
-        email: this.email,
-      };
-      axios
-        .post("/api/clients", clientsData)
-        .then((response) => {
-          alert("Usuario creado");
-          console.log(response);
-        })
-        .catch((error) => console.log(error));
-    },
   },
 }).mount("#app");

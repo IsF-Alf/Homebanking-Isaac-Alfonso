@@ -5,16 +5,13 @@ createApp({
     return {
       accounts: [],
       transactions: [],
-      account:``,
+      account: ``,
     };
   },
   created() {
     let param = location.search;
     let params = new URLSearchParams(param);
     let idClient = params.get("id");
-    // this.accountDetail = this.accounts.find(
-    //   (account) => account.id == idClient
-    // );
     axios
       .get(`/api/accounts/${idClient}`)
       .then((accountsAll) => {
