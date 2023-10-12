@@ -5,6 +5,7 @@ createApp({
     return {
       clientsInformation: {},
       accounts: [],
+      loans: [],
     };
   },
   created() {
@@ -16,6 +17,8 @@ createApp({
         console.log(client);
         this.accounts = client.accounts;
         console.log(this.accounts);
+        this.loans = client.loans;
+        console.log(this.loans);
       })
       .catch((error) => console.log(error));
   },

@@ -33,13 +33,13 @@ nav{
 }
 
 main {
-    padding-top: 2rem;
-    height: 65vh;
-    gap: 3rem !important;
+    padding-top: 1rem;
+    min-height: 65vh;
 }
 
 footer {
     height: 10vh;
+    background-color: rgb(82, 9, 150);
 }
 
 h1 {    

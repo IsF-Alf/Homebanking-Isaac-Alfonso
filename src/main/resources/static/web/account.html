@@ -26,20 +26,44 @@
         </header>
         <main class=" d-flex align-items-center flex-column">
             <h3>Welcome {{clientsInformation.firstName}} {{clientsInformation.lastName}}</h3>
-            <div class="d-flex gap-3">
-                <div v-for="account of accounts" class="card" style="width: 18rem;">
-                    <div class="card-header">
-                        <p>Number account: {{account.number}}</p>
+            <div class="d-flex align-items-center flex-column">
+                <div class="d-flex gap-3">
+                    <div v-for="account of accounts" class="card" style="width: 18rem;">
+                        <div class="card-header">
+                            <p>Number account: {{account.number}}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Creation date: {{account.creationDate}}</li>
+                            <li class="list-group-item">Balance: ${{new
+                                Intl.NumberFormat("de-DE").format(account.balance)}}
+                            </li>
+                        </ul>
+                        <a v-bind:href=`http://localhost:8080/web/assets/pages/transaction.html?id=${account.id}`
+                            class="btn btn-primary">Transactions</a>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Creation date: {{account.creationDate}}</li>
-                        <li class="list-group-item">Balance: ${{new Intl.NumberFormat("de-DE").format(account.balance)}}
-                        </li>
-                    </ul>
-                    <a v-bind:href=`http://localhost:8080/web/assets/pages/transaction.html?id=${account.id}`
-                        class="btn btn-primary">Transactions</a>
                 </div>
             </div>
+            <div class="d-flex flex-column align-items-center pt-3" v-if="loans.length>0">
+                <h3>Your loans</h3>
+                <table class="table w-100">
+                    <thead>
+                        <tr>
+                            <th scope="col">Type loan</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Payments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="loan of loans">
+                            <td>{{loan.name}}</td>
+                            <td>${{new
+                                Intl.NumberFormat("de-DE").format(loan.amount)}}</td>
+                            <td>{{loan.payment}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2 v-else>You don't have loans</h2>
         </main>
         <footer>
         </footer>
