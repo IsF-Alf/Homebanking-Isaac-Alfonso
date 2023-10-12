@@ -114,7 +114,6 @@ public class HomebankingApplication {
             isaac.addClientLoan(isaacLoan2);
             automotive.addClientLoan(isaacLoan2);
             clientLoanRepository.save(isaacLoan2);
-
         };
     }
 }
