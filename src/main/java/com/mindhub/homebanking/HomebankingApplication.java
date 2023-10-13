@@ -94,10 +94,10 @@ public class HomebankingApplication {
 
 //            --------------------------------------------------CLIENT LOANS------------------------------------------------------------------
 
-            ClientLoan melbaLoan1 = new ClientLoan(400000.00, 60,mortgage);
-            ClientLoan melbaLoan2 = new ClientLoan(50000.00, 12,personal);
-            ClientLoan isaacLoan1 = new ClientLoan(100000.00, 24,personal);
-            ClientLoan isaacLoan2 = new ClientLoan(200000.00, 36,automotive);
+            ClientLoan melbaLoan1 = new ClientLoan(400000.00, 60, mortgage);
+            ClientLoan melbaLoan2 = new ClientLoan(50000.00, 12, personal);
+            ClientLoan isaacLoan1 = new ClientLoan(100000.00, 24, personal);
+            ClientLoan isaacLoan2 = new ClientLoan(200000.00, 36, automotive);
 
             melba.addClientLoan(melbaLoan1);
             mortgage.addClientLoan(melbaLoan1);

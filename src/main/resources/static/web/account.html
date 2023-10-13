@@ -14,7 +14,7 @@
 <body>
     <div id="app" v-cloak>
         <header class="d-flex flex-column align-items-center">
-            <nav class="d-flex justify-content-around align-items-center">
+            <nav class="d-flex justify-content-around align-items-center navHeader">
                 <img class="imgLogo" src="../assets/image/logo.png" alt="">
                 <div class="navLink d-flex justify-content-evenly">
                     <a href="#">Account</a>
@@ -26,8 +26,8 @@
         </header>
         <main class=" d-flex align-items-center flex-column">
             <h3>Welcome {{clientsInformation.firstName}} {{clientsInformation.lastName}}</h3>
-            <div class="d-flex align-items-center flex-column">
-                <div class="d-flex gap-3">
+            <div class="d-flex">
+                <div class="d-flex gap-3 align-items-center accounts">
                     <div v-for="account of accounts" class="card" style="width: 18rem;">
                         <div class="card-header">
                             <p>Number account: {{account.number}}</p>
