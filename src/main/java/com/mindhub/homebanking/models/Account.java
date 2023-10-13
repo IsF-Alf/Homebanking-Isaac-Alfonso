@@ -18,7 +18,7 @@ public class Account {
     private Double balance;
     @ManyToOne()
     private Client client;
-    @OneToMany(mappedBy = "account",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
     private Set<Transaction> transactions = new HashSet<>();
 
     public Account() {
@@ -78,7 +78,8 @@ public class Account {
     public Set<Transaction> getTransaction() {
         return transactions;
     }
-    public void addTransaction(Transaction transaction){
+
+    public void addTransaction(Transaction transaction) {
         transaction.setAccount(this);
         transactions.add(transaction);
     }
