@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static com.mindhub.homebanking.models.CardColor.*;
 import static com.mindhub.homebanking.models.TransactionType.CREDIT;
 import static com.mindhub.homebanking.models.TransactionType.DEBIT;
 
@@ -22,7 +23,10 @@ public class HomebankingApplication {
     }
 
     @Bean
-    public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository) {
+    public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository,
+                                      TransactionRepository transactionRepository, LoanRepository loanRepository,
+                                      ClientLoanRepository clientLoanRepository, CardRepository cardRepository)
+    {
         return args -> {
 //            --------------------------------------------------CLIENTS------------------------------------------------------------------
             Client isaac = new Client("Isaac", "Alfonso", "ifa24991@gmail.com");
@@ -52,28 +56,34 @@ public class HomebankingApplication {
 
 //            --------------------------------------------------TRANSACTIONS------------------------------------------------------------------
 //            # TRANSACTIONS MELBA
-            Transaction transaction1Melba = new Transaction(DEBIT, -2500.00, "This is a test transaction", LocalDateTime.now());
+            Transaction transaction1Melba = new Transaction(DEBIT, -2500.00, "This is a test transaction",
+                    LocalDateTime.now());
             account1Melba.addTransaction(transaction1Melba);
             transactionRepository.save(transaction1Melba);
 
-            Transaction transaction2Melba = new Transaction(CREDIT, 1500.00, "This a test transaction 2", LocalDateTime.now());
+            Transaction transaction2Melba = new Transaction(CREDIT, 1500.00, "This a test transaction 2",
+                    LocalDateTime.now());
             account2Melva.addTransaction(transaction2Melba);
             transactionRepository.save(transaction2Melba);
 
-            Transaction transaction3Melba = new Transaction(CREDIT, 1400.00, "This is a test transaction 3", LocalDateTime.now());
+            Transaction transaction3Melba = new Transaction(CREDIT, 1400.00, "This is a test transaction 3",
+                    LocalDateTime.now());
             account1Melba.addTransaction(transaction3Melba);
             transactionRepository.save(transaction3Melba);
 
-            Transaction transaction4Melba = new Transaction(CREDIT, 1400.00, "This is a test transaction 4", LocalDateTime.now());
+            Transaction transaction4Melba = new Transaction(CREDIT, 1400.00, "This is a test transaction 4",
+                    LocalDateTime.now());
             account1Melba.addTransaction(transaction4Melba);
             transactionRepository.save(transaction4Melba);
 
 //            # TRANSACTIONS ISAAC
-            Transaction transaction1Isaac = new Transaction(CREDIT, 1400.00, "This is a test transaction 4", LocalDateTime.now());
+            Transaction transaction1Isaac = new Transaction(CREDIT, 1400.00, "This is a test transaction 4",
+                    LocalDateTime.now());
             account1Isaac.addTransaction(transaction1Isaac);
             transactionRepository.save(transaction1Isaac);
 
-            Transaction transaction2Isaac = new Transaction(CREDIT, 1400.00, "This is a test transaction 4", LocalDateTime.now());
+            Transaction transaction2Isaac = new Transaction(CREDIT, 1400.00, "This is a test transaction 4",
+                    LocalDateTime.now());
             account2Isaac.addTransaction(transaction2Isaac);
             transactionRepository.save(transaction2Isaac);
 
@@ -114,6 +124,23 @@ public class HomebankingApplication {
             isaac.addClientLoan(isaacLoan2);
             automotive.addClientLoan(isaacLoan2);
             clientLoanRepository.save(isaacLoan2);
+
+//            --------------------------------------------------CARDS------------------------------------------------------------------
+
+            Card melbaCardDebit = new Card("MELBAMOREL", CardType.DEBIT, GOLD, "1111 2222 3333 4444", "777",
+                    LocalDate.now().plusYears(5), LocalDate.now());
+            melba.addCard(melbaCardDebit);
+            cardRepository.save(melbaCardDebit);
+
+            Card melbaCardCredit = new Card("MELBAMOREL", CardType.CREDIT, TITANIUM, "5555 6666 7777 8888", "888",
+                    LocalDate.now().plusYears(5), LocalDate.now());
+            melba.addCard(melbaCardCredit);
+            cardRepository.save(melbaCardCredit);
+
+            Card isaacCardCredit = new Card("ISAACALFONSO", CardType.DEBIT, SILVER, "1234 5678 9101 1213", "111",
+                    LocalDate.now().plusYears(5), LocalDate.now());
+            isaac.addCard(isaacCardCredit);
+            cardRepository.save(isaacCardCredit);
         };
     }
 }

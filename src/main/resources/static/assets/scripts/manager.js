@@ -18,7 +18,6 @@ createApp({
         this.clientsInformation = apiResp;
         this.respuestaJSON = response.data;
         console.log(apiResp);
-        
       })
       .catch((error) => console.log(error));
   },
