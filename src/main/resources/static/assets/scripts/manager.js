@@ -7,6 +7,7 @@ createApp({
       lastName: "",
       email: "",
       clientsInformation: [],
+      clientsData: [],
       respuestaJSON: "",
     };
   },
@@ -16,7 +17,7 @@ createApp({
       .then((response) => {
         apiResp = response.data;
         this.clientsInformation = apiResp;
-        this.respuestaJSON = response.data;
+        this.respuestaJSON = apiResp;
         console.log(apiResp);
       })
       .catch((error) => console.log(error));
@@ -29,7 +30,7 @@ createApp({
         email: this.email,
       };
       axios
-        .post("/api/clients", clientsData)
+        .post("/rest/clients", clientsData)
         .then((response) => {
           alert("Usuario creado");
           console.log(response);

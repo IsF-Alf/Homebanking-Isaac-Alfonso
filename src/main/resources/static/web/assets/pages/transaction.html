@@ -39,7 +39,8 @@
                     <tr v-for="transaction of transactions">
                         <td :class="transaction.type == `DEBIT`?`transactionDebit`:`transactionCredit` ">
                             {{transaction.type}}</td>
-                        <td>$ {{transaction.amount}}</td>
+                        <td>${{new
+                            Intl.NumberFormat("de-DE").format(transaction.amount)}}</td>
                         <td>{{transaction.date}}</td>
                         <td>{{transaction.description}}</td>
                     </tr>
