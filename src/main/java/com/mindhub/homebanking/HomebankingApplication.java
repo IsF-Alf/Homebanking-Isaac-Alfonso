@@ -36,23 +36,24 @@ public class HomebankingApplication {
             clientRepository.save(melba);
 
 //            --------------------------------------------------ACCOUNTS------------------------------------------------------------------
-//            # ACCOUNT MELBA
+//            # ACCOUNTS MELBA
             Account account1Melba = new Account("VIN001", LocalDate.now(), 5000.00);
-            Account account2Melva = new Account("VIN002", LocalDate.now().plusDays(1), 7500.00);
-
-//            # ACCOUNT ISAAC
-            Account account1Isaac = new Account("IFA001", LocalDate.now(), 8000.00);
-            Account account2Isaac = new Account("IFA002", LocalDate.now().plusDays(3), 5000.00);
-
             melba.addAccount(account1Melba);
-            melba.addAccount(account2Melva);
-            isaac.addAccount(account1Isaac);
-            isaac.addAccount(account2Isaac);
-
             accountRepository.save(account1Melba);
-            accountRepository.save(account2Melva);
+
+            Account account2Melba = new Account("VIN002", LocalDate.now().plusDays(1), 7500.00);
+            melba.addAccount(account2Melba);
+            accountRepository.save(account2Melba);
+
+//            # ACCOUNTS ISAAC
+            Account account1Isaac = new Account("IFA001", LocalDate.now(), 8000.00);
+            isaac.addAccount(account1Isaac);
             accountRepository.save(account1Isaac);
+
+            Account account2Isaac = new Account("IFA002", LocalDate.now().plusDays(3), 5000.00);
+            isaac.addAccount(account2Isaac);
             accountRepository.save(account2Isaac);
+
 
 //            --------------------------------------------------TRANSACTIONS------------------------------------------------------------------
 //            # TRANSACTIONS MELBA
@@ -63,7 +64,7 @@ public class HomebankingApplication {
 
             Transaction transaction2Melba = new Transaction(CREDIT, 1500.00, "This a test transaction 2",
                     LocalDateTime.now());
-            account2Melva.addTransaction(transaction2Melba);
+            account2Melba.addTransaction(transaction2Melba);
             transactionRepository.save(transaction2Melba);
 
             Transaction transaction3Melba = new Transaction(CREDIT, 1400.00, "This is a test transaction 3",
@@ -87,6 +88,7 @@ public class HomebankingApplication {
             account2Isaac.addTransaction(transaction2Isaac);
             transactionRepository.save(transaction2Isaac);
 
+
 //            --------------------------------------------------PAYMENTS------------------------------------------------------------------
 
             List<Integer> paymentMortgage = List.of(12, 24, 36, 48, 60);
@@ -103,30 +105,31 @@ public class HomebankingApplication {
             loanRepository.save(personal);
 
 //            --------------------------------------------------CLIENT LOANS------------------------------------------------------------------
+//            # LOANS MELBA
+            ClientLoan loan1Melba = new ClientLoan(400000.00, 60, mortgage);
+            melba.addClientLoan(loan1Melba);
+            mortgage.addClientLoan(loan1Melba);
+            clientLoanRepository.save(loan1Melba);
 
-            ClientLoan melbaLoan1 = new ClientLoan(400000.00, 60, mortgage);
-            ClientLoan melbaLoan2 = new ClientLoan(50000.00, 12, personal);
-            ClientLoan isaacLoan1 = new ClientLoan(100000.00, 24, personal);
-            ClientLoan isaacLoan2 = new ClientLoan(200000.00, 36, automotive);
+            ClientLoan loan2Melba = new ClientLoan(50000.00, 12, personal);
+            melba.addClientLoan(loan2Melba);
+            personal.addClientLoan(loan2Melba);
+            clientLoanRepository.save(loan2Melba);
 
-            melba.addClientLoan(melbaLoan1);
-            mortgage.addClientLoan(melbaLoan1);
-            clientLoanRepository.save(melbaLoan1);
+//            # LOANS ISAAC
+            ClientLoan loan1Isaac = new ClientLoan(100000.00, 24, personal);
+            isaac.addClientLoan(loan1Isaac);
+            personal.addClientLoan(loan1Isaac);
+            clientLoanRepository.save(loan1Isaac);
 
-            melba.addClientLoan(melbaLoan2);
-            personal.addClientLoan(melbaLoan2);
-            clientLoanRepository.save(melbaLoan2);
+            ClientLoan loan2Isaac = new ClientLoan(200000.00, 36, automotive);
+            isaac.addClientLoan(loan2Isaac);
+            automotive.addClientLoan(loan2Isaac);
+            clientLoanRepository.save(loan2Isaac);
 
-            isaac.addClientLoan(isaacLoan1);
-            personal.addClientLoan(isaacLoan1);
-            clientLoanRepository.save(isaacLoan1);
 
-            isaac.addClientLoan(isaacLoan2);
-            automotive.addClientLoan(isaacLoan2);
-            clientLoanRepository.save(isaacLoan2);
-
-//            --------------------------------------------------CARDS------------------------------------------------------------------
-
+            //            --------------------------------------------------CARDS------------------------------------------------------------------
+//            # CARDS MELBA
             Card melbaCardDebit = new Card("MELBAMOREL", CardType.DEBIT, GOLD, "1111 2222 3333 4444", "777",
                     LocalDate.now().plusYears(5), LocalDate.now());
             melba.addCard(melbaCardDebit);
@@ -137,6 +140,7 @@ public class HomebankingApplication {
             melba.addCard(melbaCardCredit);
             cardRepository.save(melbaCardCredit);
 
+//            # CARDS ISAAC
             Card isaacCardCredit = new Card("ISAACALFONSO", CardType.DEBIT, SILVER, "1234 5678 9101 1213", "111",
                     LocalDate.now().plusYears(5), LocalDate.now());
             isaac.addCard(isaacCardCredit);
