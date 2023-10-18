@@ -20,15 +20,6 @@ public class ClientLoan {
     public ClientLoan() {
     }
 
-    public ClientLoan(Double amount) {
-        this.amount = amount;
-    }
-
-    public ClientLoan(Double amount, Integer payment) {
-        this.amount = amount;
-        this.payment = payment;
-    }
-
     public ClientLoan(Double amount, Integer payment, Loan loan) {
         this.amount = amount;
         this.payment = payment;

@@ -21,21 +21,6 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction(TransactionType type) {
-        this.type = type;
-    }
-
-    public Transaction(TransactionType type, Double amount) {
-        this.type = type;
-        this.amount = amount;
-    }
-
-    public Transaction(TransactionType type, Double amount, String description) {
-        this.type = type;
-        this.amount = amount;
-        this.description = description;
-    }
-
     public Transaction(TransactionType type, Double amount, String description, LocalDateTime date) {
         this.type = type;
         this.amount = amount;

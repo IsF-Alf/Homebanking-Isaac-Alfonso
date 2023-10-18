@@ -24,15 +24,6 @@ public class Loan {
     public Loan() {
     }
 
-    public Loan(String name) {
-        this.name = name;
-    }
-
-    public Loan(String name, Double maxAmount) {
-        this.name = name;
-        this.maxAmount = maxAmount;
-    }
-
     public Loan(String name, Double maxAmount, List<Integer> payment) {
         this.name = name;
         this.maxAmount = maxAmount;

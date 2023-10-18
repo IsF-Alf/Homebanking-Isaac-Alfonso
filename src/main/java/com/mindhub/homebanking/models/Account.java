@@ -24,15 +24,6 @@ public class Account {
     public Account() {
     }
 
-    public Account(String number) {
-        this.number = number;
-    }
-
-    public Account(String number, LocalDate creationDate) {
-        this.number = number;
-        this.creationDate = creationDate;
-    }
-
     public Account(String number, LocalDate creationDate, Double balance) {
         this.number = number;
         this.creationDate = creationDate;

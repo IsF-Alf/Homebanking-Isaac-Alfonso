@@ -3,23 +3,25 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
-      clientsInformation: {},
       accounts: [],
-      loans: [],
+      transactions: [],
+      account: ``,
     };
   },
   created() {
+    let param = location.search;
+    let params = new URLSearchParams(param);
+    let idClient = params.get("id");
     axios
-      .get("/api/clients/2")
-      .then((response) => {
-        client = response.data;
-        this.clientsInformation = client;
-        console.log(client);
-        this.accounts = client.accounts;
+      .get(`/api/accounts/${idClient}`)
+      .then((accountsAll) => {
+        this.accounts = accountsAll.data;
+        this.transactions = this.accounts.transactions;
+        this.account = this.accounts.number;
         console.log(this.accounts);
-        this.loans = client.loans;
-        console.log(this.loans);
+        console.log(this.accounts.transactions);
       })
-      .catch((error) => console.log(error));
+      .catch((err) => console.log(err));
   },
+  methods: {},
 }).mount("#app");

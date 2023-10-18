@@ -28,15 +28,6 @@ public class Client {
     public Client() {
     }
 
-    public Client(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public Client(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
     public Client(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
