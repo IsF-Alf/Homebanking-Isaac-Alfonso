@@ -38,6 +38,9 @@ public class HomebankingApplication {
             Client melba = new Client("Melba", "Morel", "melba_m@gmail.com",passwordEncoder.encode("melba1"));
             clientRepository.save(melba);
 
+                Client admin1 = new Client("Jack","Sparrow","js.mindbank@gmail.com", passwordEncoder.encode("jack1"));
+            clientRepository.save(admin1);
+
 
 //            --------------------------------------------------ACCOUNTS------------------------------------------------------------------
 //            # ACCOUNTS MELBA
