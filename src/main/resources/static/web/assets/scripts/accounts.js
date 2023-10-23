@@ -10,7 +10,7 @@ createApp({
   },
   created() {
     axios
-      .get("/api/clients/2")
+      .get("/api/clients/current")
       .then((response) => {
         client = response.data;
         this.clientsInformation = client;
