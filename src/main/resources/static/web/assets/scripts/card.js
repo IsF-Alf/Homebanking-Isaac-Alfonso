@@ -31,6 +31,6 @@ filterCredit(){
 },
 filterDebit(){
   this.debitCard = this.cards.filter(card => card.type === "DEBIT")
-}
+},
   },
 }).mount("#app");

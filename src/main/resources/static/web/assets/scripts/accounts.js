@@ -31,6 +31,14 @@ createApp({
             location.href = "http://localhost:8080";
           })
           .catch((error) => console.log(error));
+        },
+        createAccount(){
+          axios.post('/api/clients/current/accounts')
+      .then(response=>{
+        console.log("created")
+        location.reload();        
+      })
+      .catch(error => console.log("error"))
         }
       },
 }).mount("#app");

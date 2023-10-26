@@ -36,7 +36,7 @@ createApp({
         .then((response) => {
           alert("Creted new Client");
           console.log(response);
-          location.pathname = "/index.html";
+          location.pathname = "/index.html"
         })
         .catch((error) => console.log(error));
     },

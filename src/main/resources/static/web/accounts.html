@@ -20,6 +20,7 @@
                     <a href="#">Account</a>
                     <a href="./assets/pages/card.html">Cards</a>
                     <a href="#">Loans</a>
+                    <button @click="createAccount">Create account</button>
                     <button type="button" @click.prevent="logoutClient()">logout</button>
                 </div>
             </nav>
@@ -39,7 +40,7 @@
                                 Intl.NumberFormat("de-DE").format(account.balance)}}
                             </li>
                         </ul>
-                        <a v-bind:href=`http://localhost:8080/web/assets/pages/account.html?id=${account.id}`
+                        <a :href=`http://localhost:8080/web/assets/pages/account.html?id=${account.id}`
                             class="btn btn-primary">Transactions</a>
                     </div>
                 </div>
