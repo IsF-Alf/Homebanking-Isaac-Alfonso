@@ -25,21 +25,32 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-
     @RequestMapping("/clients")
-    public List<ClientDTO> getAllClients(){return clientService.getAllClients();}
+    public List<ClientDTO> getAllClients() {
+        return clientService.getAllClients();
+    }
 
     @RequestMapping("/clients/{id}")
-    public ClientDTO getClient(@PathVariable Long id){return clientService.getClient(id);}
+    public ClientDTO getClient(@PathVariable Long id) {
+        return clientService.getClient(id);
+    }
 
     @RequestMapping("/clients/current")
-    public ClientDTO getAll(Authentication authentication) {return clientService.getAll(authentication);}
+    public ClientDTO getAll(Authentication authentication) {
+        return clientService.getAll(authentication);
+    }
 
     @PostMapping("/clients")
     public ResponseEntity<Object> register(
 
             @RequestParam String firstName, @RequestParam String lastName,
 
-            @RequestParam String email, @RequestParam String password) {return clientService.register(firstName,lastName,email,password);}
-    public String generateNumber(int min, int max) {return clientService.generateNumber(min,max);}
+            @RequestParam String email, @RequestParam String password)
+    {
+        return clientService.register(firstName, lastName, email, password);
+    }
+
+    public String generateNumber(int min, int max) {
+        return clientService.generateNumber(min, max);
+    }
 }

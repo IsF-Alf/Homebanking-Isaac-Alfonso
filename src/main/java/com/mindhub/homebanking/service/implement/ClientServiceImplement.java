@@ -29,6 +29,7 @@ public class ClientServiceImplement implements ClientService {
     AccountRepository accountRepository;
     @Autowired
     PasswordEncoder passwordEncoder;
+
     @Override
     public void saveClient(Client client) {
         clientRepository.save(client);
@@ -36,7 +37,8 @@ public class ClientServiceImplement implements ClientService {
 
     @Override
     public List<ClientDTO> getAllClients() {
-        List<ClientDTO> clients = clientRepository.findAll().stream().map(client -> new ClientDTO(client)).collect(Collectors.toList());
+        List<ClientDTO> clients = clientRepository.findAll().stream().map(client -> new ClientDTO(client)).collect(
+                Collectors.toList());
         return clients;
     }
 
@@ -52,28 +54,27 @@ public class ClientServiceImplement implements ClientService {
     }
 
     @Override
-    public ResponseEntity<Object> register(@RequestParam String firstName,
-                                           @RequestParam String lastName,
-                                           @RequestParam String email,
-                                           @RequestParam String password) {
+    public ResponseEntity<Object> register(@RequestParam String firstName, @RequestParam String lastName,
+                                           @RequestParam String email, @RequestParam String password)
+    {
 
         if (firstName.isBlank()) {
             return new ResponseEntity<>("You must enter your name", HttpStatus.FORBIDDEN);
         }
 
         if (lastName.isBlank()) {
-            return new ResponseEntity<>("You must enter your last name",HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("You must enter your last name", HttpStatus.FORBIDDEN);
         }
 
         if (email.isBlank()) {
-            return new ResponseEntity<>("You must enter your email",HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("You must enter your email", HttpStatus.FORBIDDEN);
         }
 
         if (password.isBlank()) {
-            return new ResponseEntity<>("You must enter your password",HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("You must enter your password", HttpStatus.FORBIDDEN);
         }
 
-        if (clientRepository.findByEmail(email) !=  null) {
+        if (clientRepository.findByEmail(email) != null) {
             return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
         }
 
@@ -87,21 +88,19 @@ public class ClientServiceImplement implements ClientService {
     }
 
     @Override
-    public String generateNumber(int min,
-                                 int max) {
-        List<AccountDTO> accounts = accountRepository.findAll().stream().map(account -> new AccountDTO(account)).collect(
-                Collectors.toList());
-        Set<String> setAccounts = accounts.stream().map(accountDTO ->
-                accountDTO.getNumber()
-        ).collect(Collectors.toSet());
+    public String generateNumber(int min, int max) {
+        List<AccountDTO> accounts = accountRepository.findAll().stream().map(
+                account -> new AccountDTO(account)).collect(Collectors.toList());
+        Set<String> setAccounts = accounts.stream().map(accountDTO -> accountDTO.getNumber()).collect(
+                Collectors.toSet());
         String aux = "VIN - ";
         long number;
         String numbercompleted;
-        do{
+        do {
             number = (int) ((Math.random() * (max - min)) + min);
             String formattedNumber = String.format("%03d", number);
             numbercompleted = aux + formattedNumber;
         } while (setAccounts.contains(numbercompleted));
-        return  numbercompleted;
+        return numbercompleted;
     }
 }
