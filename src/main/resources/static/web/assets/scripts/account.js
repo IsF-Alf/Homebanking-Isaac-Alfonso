@@ -23,5 +23,15 @@ createApp({
       })
       .catch((err) => console.log(err));
   },
-  methods: {},
+  methods: {
+    logoutClient(){
+      axios
+      .post("/api/logout")
+      .then((response) => {
+        console.log("signed out!!!");
+        location.href = "http://localhost:8080";
+      })
+      .catch((error) => console.log(error));
+    },
+  },
 }).mount("#app");

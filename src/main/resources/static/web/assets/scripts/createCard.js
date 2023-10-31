@@ -5,18 +5,22 @@ createApp({
     return {
       cardType: "",
       cardColor: "",
+      messageError:""
     };
   },
-  created() {
-    
-  },
+  created() {},
   methods: {
-    createCard(){
-        axios.post("/api/clients/current/cards", `type=${this.cardType}&color=${this.cardColor}`)
-    .then((response) => {
-        location.pathname = "/web/assets/pages/card.html";
-      })
-      .catch((error) => console.log(error));
-    }
+    createCard() {
+      axios
+        .post(
+          "/api/clients/current/cards",
+          `type=${this.cardType}&color=${this.cardColor}`
+        )
+        .then((response) => {
+          location.pathname = "/web/assets/pages/card.html";
+        })
+        .catch((error) => 
+        this.messageError = error.response.data);
+    },
   },
 }).mount("#app");

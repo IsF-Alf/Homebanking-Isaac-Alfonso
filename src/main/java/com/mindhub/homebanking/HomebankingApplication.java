@@ -35,7 +35,7 @@ public class HomebankingApplication {
             Client isaac = new Client("Isaac", "Alfonso", "ifa24991@gmail.com",passwordEncoder.encode("isaac1"));
             clientRepository.save(isaac);
 
-            Client melba = new Client("Melba", "Morel", "melba_m@gmail.com",passwordEncoder.encode("melba1"));
+                Client melba = new Client("Melba", "Morel", "melba_m@gmail.com",passwordEncoder.encode("melba1"));
             clientRepository.save(melba);
 
                 Client admin1 = new Client("Jack","Sparrow","js.mindbank@gmail.com", passwordEncoder.encode("jack1"));
@@ -85,12 +85,12 @@ public class HomebankingApplication {
             transactionRepository.save(transaction4Melba);
 
 //            # TRANSACTIONS ISAAC
-            Transaction transaction1Isaac = new Transaction(CREDIT, 1400.00, "This is a test transaction 4",
+            Transaction transaction1Isaac = new Transaction(CREDIT, 1400.00, "This is a test transaction 1",
                     LocalDateTime.now());
             account1Isaac.addTransaction(transaction1Isaac);
             transactionRepository.save(transaction1Isaac);
 
-            Transaction transaction2Isaac = new Transaction(CREDIT, 1400.00, "This is a test transaction 4",
+            Transaction transaction2Isaac = new Transaction(CREDIT, 1400.00, "This is a test transaction 2",
                     LocalDateTime.now());
             account2Isaac.addTransaction(transaction2Isaac);
             transactionRepository.save(transaction2Isaac);

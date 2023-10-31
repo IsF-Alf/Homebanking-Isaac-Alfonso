@@ -32,8 +32,8 @@ public class CardController {
 
 
     @PostMapping("/clients/current/cards")
-    public ResponseEntity<Object> createCard(@RequestParam String type,
-                                             @RequestParam String color, Authentication authentication)
+    public ResponseEntity<Object> createCard(@RequestParam String type, @RequestParam String color,
+                                             Authentication authentication)
     {
         CardType cardType = CardType.valueOf(type.toUpperCase());
         CardColor cardColor = CardColor.valueOf(color.toUpperCase());
@@ -55,15 +55,14 @@ public class CardController {
         }
     }
 
-
     private String generateNumber(int min, int max) {
         List<CardDTO> cards = cardRepository.findAll().stream().map(card -> new CardDTO(card)).collect(
                 Collectors.toList());
         Set<String> setCards = cards.stream().map(cardDTO -> cardDTO.getNumber()).collect(Collectors.toSet());
-        long number;
+        Long number;
         String numberCompleted;
         do {
-            number = (int) ((Math.random() * (max - min)) + min);
+            number = (long) ((Math.random() * (max - min)) + min);
             String formattedNumber = String.format("%04d", number);
             numberCompleted = formattedNumber;
         } while (setCards.contains(numberCompleted));
