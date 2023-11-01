@@ -38,7 +38,6 @@ public class TransactionServiceImplement implements TransactionService {
         if (client == null) {
             throw new UsernameNotFoundException("Unknow client " + authentication.getName());
         }
-
         if (accountDebit.getClient() != client) {
             return new ResponseEntity<>("The origin account doesn´t belong to the authenticated client",
                     HttpStatus.FORBIDDEN);
@@ -70,7 +69,7 @@ public class TransactionServiceImplement implements TransactionService {
             accountDebit.setBalance(accountDebit.getBalance() - amount);
             accountCredit.setBalance(accountCredit.getBalance() + amount);
 
-            return new ResponseEntity<>(HttpStatus.CREATED);
+            return new ResponseEntity<>("Your transaction was successful", HttpStatus.CREATED);
         }
     }
 }

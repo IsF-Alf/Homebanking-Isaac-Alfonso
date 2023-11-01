@@ -20,10 +20,9 @@ import java.time.LocalDate;
 @Service
 public class CardServiceImplement implements CardService {
     @Autowired
-    CardRepository cardRepository;
+    private CardRepository cardRepository;
     @Autowired
-    ClientRepository clientRepository;
-
+    private ClientRepository clientRepository;
     @Override
     public ResponseEntity<Object> createCard(Authentication authentication, @RequestParam CardType type,
                                              @RequestParam CardColor color)

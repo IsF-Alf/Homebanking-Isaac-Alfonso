@@ -9,6 +9,7 @@ createApp({
       lastName: "",
       emailRegister: "",
       passwordRegister: "",
+      msjError:"",
     };
   },
   created() {},
@@ -35,13 +36,14 @@ createApp({
         .post("/api/clients", clientsData)
         .then((response) => {
           const clientLogin = `email=${this.emailRegister}&password=${this.passwordRegister}`;
-          axios.post("/api/login", clientLogin).then((response) => {
+          axios.post("/api/login", clientLogin)
+          .then((response) => {
             location.pathname = "/web/accounts.html";
-          });
-          console.log(response);
-          location.pathname = "/web/accounts.html";
+          })
         })
-        .catch((error) => console.log(error));
+        .catch((error) =>
+        {error.response.data = this.msjError 
+          console.log(this.msjError)} );
     },
   },
 }).mount("#app");

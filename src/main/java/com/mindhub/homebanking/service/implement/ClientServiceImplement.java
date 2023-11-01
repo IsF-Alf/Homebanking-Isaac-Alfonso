@@ -24,11 +24,11 @@ import java.util.stream.Collectors;
 @Service
 public class ClientServiceImplement implements ClientService {
     @Autowired
-    ClientRepository clientRepository;
+    private ClientRepository clientRepository;
     @Autowired
-    AccountRepository accountRepository;
+    private AccountRepository accountRepository;
     @Autowired
-    PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public void saveClient(Client client) {
@@ -57,27 +57,21 @@ public class ClientServiceImplement implements ClientService {
     public ResponseEntity<Object> register(@RequestParam String firstName, @RequestParam String lastName,
                                            @RequestParam String email, @RequestParam String password)
     {
-
         if (firstName.isBlank()) {
             return new ResponseEntity<>("You must enter your name", HttpStatus.FORBIDDEN);
         }
-
         if (lastName.isBlank()) {
             return new ResponseEntity<>("You must enter your last name", HttpStatus.FORBIDDEN);
         }
-
         if (email.isBlank()) {
             return new ResponseEntity<>("You must enter your email", HttpStatus.FORBIDDEN);
         }
-
         if (password.isBlank()) {
             return new ResponseEntity<>("You must enter your password", HttpStatus.FORBIDDEN);
         }
-
         if (clientRepository.findByEmail(email) != null) {
             return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
         }
-
         Client newClient = new Client(firstName, lastName, email, passwordEncoder.encode(password));
         Account account = new Account(generateNumber(1, 100000000), LocalDate.now(), 0.00);
         accountRepository.save(account);

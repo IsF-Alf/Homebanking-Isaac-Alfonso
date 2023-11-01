@@ -114,6 +114,7 @@ main {
 }
 
 .mainCard{
+    gap: 3rem !important;
     min-height: 65vh !important;
 }
 .rowTable {

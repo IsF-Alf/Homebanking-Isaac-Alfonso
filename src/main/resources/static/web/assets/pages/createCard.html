@@ -41,8 +41,9 @@
                     <option value="TITANIUM">TITANIUM</option>
                 </select>
                 <button class="Btn" data-text="Create card" @click="createCard">Create card</button>
+                {{messageError}}
             </div>
-            <div v-if="messageError !== null">{{messageError}}</div>
+            <!-- <div v-if="messageError !== null"></div> -->
         </main>
         <footer class="d-flex justify-content-around align-items-center">
             <p class="slogan">Legacy, Trust, Brotherhood: Elevating Your Financial Journey.</p>

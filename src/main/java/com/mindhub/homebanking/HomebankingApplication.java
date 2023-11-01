@@ -44,20 +44,20 @@ public class HomebankingApplication {
 
 //            --------------------------------------------------ACCOUNTS------------------------------------------------------------------
 //            # ACCOUNTS MELBA
-            Account account1Melba = new Account("VIN001", LocalDate.now(), 5000.00);
+            Account account1Melba = new Account("VIN - 001", LocalDate.now(), 5000.00);
             melba.addAccount(account1Melba);
             accountRepository.save(account1Melba);
 
-            Account account2Melba = new Account("VIN002", LocalDate.now().plusDays(1), 7500.00);
+            Account account2Melba = new Account("VIN - 002", LocalDate.now().plusDays(1), 7500.00);
             melba.addAccount(account2Melba);
             accountRepository.save(account2Melba);
 
 //            # ACCOUNTS ISAAC
-            Account account1Isaac = new Account("IFA001", LocalDate.now(), 8000.00);
+            Account account1Isaac = new Account("IFA - 001", LocalDate.now(), 8000.00);
             isaac.addAccount(account1Isaac);
             accountRepository.save(account1Isaac);
 
-            Account account2Isaac = new Account("IFA002", LocalDate.now().plusDays(3), 5000.00);
+            Account account2Isaac = new Account("IFA - 002", LocalDate.now().plusDays(3), 5000.00);
             isaac.addAccount(account2Isaac);
             accountRepository.save(account2Isaac);
 
@@ -137,18 +137,18 @@ public class HomebankingApplication {
 
             //            --------------------------------------------------CARDS------------------------------------------------------------------
 //            # CARDS MELBA
-            Card melbaCardDebit = new Card("MELBAMOREL", CardType.DEBIT, GOLD, "1111 2222 3333 4444", "777",
+            Card melbaCardDebit = new Card("MELBA MOREL", CardType.DEBIT, GOLD, "1111 2222 3333 4444", "777",
                     LocalDate.now().plusYears(5), LocalDate.now());
             melba.addCard(melbaCardDebit);
             cardRepository.save(melbaCardDebit);
 
-            Card melbaCardCredit = new Card("MELBAMOREL", CardType.CREDIT, TITANIUM, "5555 6666 7777 8888", "888",
+            Card melbaCardCredit = new Card("MELBA MOREL", CardType.CREDIT, TITANIUM, "5555 6666 7777 8888", "888",
                     LocalDate.now().plusYears(5), LocalDate.now());
             melba.addCard(melbaCardCredit);
             cardRepository.save(melbaCardCredit);
 
 //            # CARDS ISAAC
-            Card isaacCardCredit = new Card("ISAACALFONSO", CardType.DEBIT, SILVER, "1234 5678 9101 1213", "111",
+            Card isaacCardCredit = new Card("ISAAC ALFONSO", CardType.DEBIT, SILVER, "1234 5678 9101 1213", "111",
                     LocalDate.now().plusYears(5), LocalDate.now());
             isaac.addCard(isaacCardCredit);
             cardRepository.save(isaacCardCredit);

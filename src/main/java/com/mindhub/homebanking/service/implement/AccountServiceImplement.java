@@ -54,9 +54,8 @@ public class AccountServiceImplement implements AccountService {
         }
         if (client.getAccounts().size() < 3) {
             Account account = new Account(generateNumber(1, 100000000), LocalDate.now(), 0.00);
-            accountRepository.save(account);
             client.addAccount(account);
-            clientRepository.save(client);
+            accountRepository.save(account);
             return new ResponseEntity<>("Account created successfully", HttpStatus.CREATED);
         } else {
             return new ResponseEntity<>("You have reached the limit of created accounts", HttpStatus.FORBIDDEN);
@@ -65,7 +64,7 @@ public class AccountServiceImplement implements AccountService {
 
     @Override
     public String generateNumber(int min, int max) {
-        String aux = "VIN";
+        String aux = "VIN - ";
         long number;
         String numbercompleted;
         do {
