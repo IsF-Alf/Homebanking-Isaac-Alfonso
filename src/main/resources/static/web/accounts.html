@@ -23,9 +23,10 @@
                 <button class="Btn" @click="createAccount" data-text="Create account">Create account</button>
                 <a class="Btn" href="./assets/pages/card.html" data-text="Cards">Cards</a>
                 <a class="Btn" href="./assets/pages/transfers.html" data-text="Transfer">Transfer</a>
+                <a class="Btn" href="./assets/pages/loanApplication.html" data-text="Loan Application">Loan Application</a>
                 <button class="Btn" type="button" @click.prevent="logoutClient()" data-text="logout">logout</button>
             </div>
-            <h2>Welcome, {{clientsInformation.firstName}} {{clientsInformation.lastName}}, to your online bank.</h2>
+            <h2>Welcome, {{clientsInformation.firstName}} {{clientsInformation.lastName}}, to your online bank</h2>
         </header>
         <main class=" d-flex align-items-center flex-column">
             <h3>These are your accounts:</h3>
@@ -56,7 +57,7 @@
                         <span>${{new
                             Intl.NumberFormat("de-DE").format(loan.amount)}}</span>
                         <span>Payments:</span>
-                        <span>{{loan.payment}}</span>
+                        <span>{{loan.payments}}</span>
                     </div>
                 </div>
             </div>

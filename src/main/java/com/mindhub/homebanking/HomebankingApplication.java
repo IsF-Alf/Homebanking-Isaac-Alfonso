@@ -21,6 +21,7 @@ import static com.mindhub.homebanking.models.TransactionType.DEBIT;
 public class HomebankingApplication {
     @Autowired
     private PasswordEncoder passwordEncoder;
+
     public static void main(String[] args) {
         SpringApplication.run(HomebankingApplication.class, args);
     }
@@ -32,13 +33,13 @@ public class HomebankingApplication {
     {
         return args -> {
 //            --------------------------------------------------CLIENTS------------------------------------------------------------------
-            Client isaac = new Client("Isaac", "Alfonso", "ifa24991@gmail.com",passwordEncoder.encode("isaac1"));
+            Client isaac = new Client("Isaac", "Alfonso", "ifa24991@gmail.com", passwordEncoder.encode("isaac1"));
             clientRepository.save(isaac);
 
-                Client melba = new Client("Melba", "Morel", "melba_m@gmail.com",passwordEncoder.encode("melba1"));
+            Client melba = new Client("Melba", "Morel", "melba_m@gmail.com", passwordEncoder.encode("melba1"));
             clientRepository.save(melba);
 
-                Client admin1 = new Client("Jack","Sparrow","js.mindbank@gmail.com", passwordEncoder.encode("jack1"));
+            Client admin1 = new Client("Jack", "Sparrow", "js.mindbank@gmail.com", passwordEncoder.encode("jack1"));
             clientRepository.save(admin1);
 
 

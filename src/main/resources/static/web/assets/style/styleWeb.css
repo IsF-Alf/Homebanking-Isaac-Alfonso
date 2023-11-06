@@ -49,7 +49,7 @@ nav {
 .navLink {
     margin-top: 6px !important;
     height: 5vh;
-    width: 30vw;
+    width: 40vw;
 }
 
 h1 {
@@ -130,8 +130,8 @@ h2 {
     text-align: center;
     color: rgb(37, 3, 68) !important;
     background-color: rgba(91, 92, 54, 0.329);
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
     border-radius: 1rem;
     margin-top: 1rem !important;
 }
