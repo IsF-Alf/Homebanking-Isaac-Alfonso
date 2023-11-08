@@ -29,7 +29,7 @@ public class AccountServiceImplement implements AccountService {
     }
 
     @Override
-    public boolean existsAccountByNumber(String number) {
+    public Boolean existsAccountByNumber(String number) {
         return accountRepository.existsByNumber(number);
     }
 

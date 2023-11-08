@@ -5,17 +5,9 @@ import com.mindhub.homebanking.models.CardColor;
 import com.mindhub.homebanking.models.CardType;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.CardRepository;
-import com.mindhub.homebanking.repositories.ClientRepository;
 import com.mindhub.homebanking.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.time.LocalDate;
 
 @Service
 public class CardServiceImplement implements CardService {
@@ -23,7 +15,7 @@ public class CardServiceImplement implements CardService {
     CardRepository cardRepository;
 
     @Override
-    public boolean existsCardByTypeAndColorAndClient(CardType type, CardColor color, Client client) {
+    public Boolean existsCardByTypeAndColorAndClient(CardType type, CardColor color, Client client) {
         return cardRepository.existsByTypeAndColorAndClient(type, color, client);
     }
 
@@ -33,7 +25,7 @@ public class CardServiceImplement implements CardService {
     }
 
     @Override
-    public boolean existsCardByNumber(String number) {
+    public Boolean existsCardByNumber(String number) {
         return cardRepository.existsByNumber(number);
     }
 }

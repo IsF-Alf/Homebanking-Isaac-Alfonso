@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class LoanServiceImplement implements LoanService {
     @Autowired
-    LoanRepository loanRepository;
+    private LoanRepository loanRepository;
     @Override
     public List<Loan> findAllLoans() {
         return loanRepository.findAll();

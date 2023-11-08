@@ -78,7 +78,7 @@ public class AccountController {
     }
 
     public String generateNumber(int min, int max) {
-        String aux = "VIN";
+        String aux = "VIN - ";
         long number;
         String numbercompleted;
         do {

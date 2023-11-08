@@ -12,5 +12,5 @@ public interface ClientService {
     Client findClientById (Long id);
     Client findClientByEmail (String email);
     void saveClient (Client client);
-    boolean existsClientByEmail(String email);
+    Boolean existsClientByEmail(String email);
 }
