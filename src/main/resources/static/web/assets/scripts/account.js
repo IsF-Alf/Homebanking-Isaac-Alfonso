@@ -11,7 +11,7 @@ createApp({
   created() {
     let param = location.search;
     let params = new URLSearchParams(param);
-    let idClient = params.get("id");
+    let idClient = params.get("id");    
     axios
       .get(`/api/accounts/${idClient}`)
       .then((accountsAll) => {
@@ -24,14 +24,14 @@ createApp({
       .catch((err) => console.log(err));
   },
   methods: {
-    logoutClient(){
+    logoutClient() {
       axios
-      .post("/api/logout")
-      .then((response) => {
-        console.log("signed out!!!");
-        location.href = "http://localhost:8080";
-      })
-      .catch((error) => console.log(error));
+        .post("/api/logout")
+        .then((response) => {
+          console.log("signed out!!!");
+          location.href = "http://localhost:8080";
+        })
+        .catch((error) => console.log(error));
     },
   },
 }).mount("#app");

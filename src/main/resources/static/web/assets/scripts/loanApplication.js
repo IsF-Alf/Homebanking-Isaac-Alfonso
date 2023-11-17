@@ -5,7 +5,7 @@ createApp({
     return {
       loans: [],
       loanId: 0,
-      amount: 0,
+      amount: null,
       payments: 0,
       destinationAccount: "",
       accounts: {},
@@ -47,7 +47,7 @@ createApp({
         });
     },
   },
-  logout() {
+  logoutClient() {
     axios
       .post(`/api/logout`)
       .then((response) => {

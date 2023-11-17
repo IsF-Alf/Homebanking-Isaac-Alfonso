@@ -3,20 +3,13 @@ package com.mindhub.homebanking.controllers;
 import com.mindhub.homebanking.dto.LoanApplicationDTO;
 import com.mindhub.homebanking.dto.LoanDTO;
 import com.mindhub.homebanking.models.*;
-import com.mindhub.homebanking.repositories.AccountRepository;
-import com.mindhub.homebanking.repositories.ClientRepository;
-import com.mindhub.homebanking.repositories.LoanRepository;
-import com.mindhub.homebanking.repositories.TransactionRepository;
 import com.mindhub.homebanking.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -36,7 +29,7 @@ public class LoanController {
     @Autowired
     private TransactionService transactionService;
 
-    @RequestMapping("/loans")
+    @GetMapping("/loans")
     public ResponseEntity<List<LoanDTO>> getAllLoans(Authentication authentication) {
         Client client = clientService.findClientByEmail(authentication.getName());
         if (client == null) {
@@ -96,7 +89,6 @@ public class LoanController {
         }
 
         ClientLoan clientLoan = new ClientLoan(loanApplicationDTO.getAmount() * 1.20, loanApplicationDTO.getPayments());
-
         client.addClientLoan(clientLoan);
         loan.addClientLoan(clientLoan);
         clientLoanService.saveClientLoan(clientLoan);

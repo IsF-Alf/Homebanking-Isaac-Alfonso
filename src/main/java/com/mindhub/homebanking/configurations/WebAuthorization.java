@@ -19,13 +19,15 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/index.html").permitAll()
-                .antMatchers("/web/assets/**").permitAll()
+                .antMatchers("/web/assets/pages/login.html").permitAll()
+                .antMatchers("/web/assets/style/**").permitAll()
+                .antMatchers("/web/assets/scripts/**").permitAll()
                 .antMatchers("/web/accounts.html").hasAuthority("CLIENT")
                 .antMatchers(HttpMethod.POST, "/api/login" , "/api/clients").permitAll()
-                .antMatchers("/api/clients/2").hasAuthority("CLIENT")
-                .antMatchers(HttpMethod.POST,"/web/pages/cards.html","/api/clients/current/accounts").hasAuthority("CLIENT")
-                .antMatchers(HttpMethod.POST, "/api/clients/current/accounts").hasAuthority("CLIENT")
-                .antMatchers("/web/**").hasAuthority("ADMIN");
+                .antMatchers("/api/clients/current/**").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.POST, "/api/clients/current/**").hasAuthority("CLIENT")
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/rest/**").hasAuthority("ADMIN");
         http.formLogin()
                 .usernameParameter("email")
                 .passwordParameter("password")

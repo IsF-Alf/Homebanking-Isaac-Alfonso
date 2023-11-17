@@ -27,13 +27,12 @@ const app = Vue.createApp({
           `amount=${this.amount}&description=${this.description}&originNumber=${this.originNumber}&destinationNumber=${this.destinationNumber}`
         )
         .then(() => {
-            
           location.pathname = `/web/assets/pages/transfers.html`;
         })
         .catch((error) => console.log(error));
     },
   },
-  logout() {
+  logoutClient() {
     axios
       .post(`/api/logout`)
       .then((response) => {

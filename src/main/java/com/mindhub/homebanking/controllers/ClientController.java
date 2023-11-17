@@ -1,4 +1,5 @@
 package com.mindhub.homebanking.controllers;
+
 import com.mindhub.homebanking.dto.AccountDTO;
 import com.mindhub.homebanking.dto.ClientDTO;
 import com.mindhub.homebanking.models.Account;
@@ -27,47 +28,47 @@ public class ClientController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @RequestMapping("/clients")
-    public List<ClientDTO> getAllClients(){
-        List<ClientDTO> clients = clientService.findAllClients().stream().map(client -> new ClientDTO(client)).collect(Collectors.toList());
+    @GetMapping("/clients")
+    public List<ClientDTO> getAllClients() {
+        List<ClientDTO> clients = clientService.findAllClients().stream().map(client -> new ClientDTO(client)).collect(
+                Collectors.toList());
         return clients;
     }
 
-    @RequestMapping("/clients/{id}")
-    public ClientDTO getClient(@PathVariable Long id){
+    @GetMapping("/clients/{id}")
+    public ClientDTO getClient(@PathVariable Long id) {
         ClientDTO client = new ClientDTO(clientService.findClientById(id));
         return client;
     }
 
-    @RequestMapping("/clients/current")
+    @GetMapping("/clients/current")
     public ClientDTO getAll(Authentication authentication) {
         return new ClientDTO(clientService.findClientByEmail(authentication.getName()));
     }
 
     @PostMapping("/clients")
-    public ResponseEntity<Object> register(
-            @RequestParam String firstName, @RequestParam String lastName,
-            @RequestParam String email, @RequestParam String password) {
+    public ResponseEntity<Object> register(@RequestParam String firstName, @RequestParam String lastName,
+                                           @RequestParam String email, @RequestParam String password)
+    {
 
         if (firstName.isBlank()) {
-            return new ResponseEntity<>("You must enter your name",
-                    HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Please complete this field with your name", HttpStatus.FORBIDDEN);
         }
 
         if (lastName.isBlank()) {
-            return new ResponseEntity<>("You must enter your last name", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Please complete this field with your last name", HttpStatus.FORBIDDEN);
         }
 
         if (email.isBlank()) {
-            return new ResponseEntity<>("You must enter your email",HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Please complete this field with your email", HttpStatus.FORBIDDEN);
         }
 
         if (password.isBlank()) {
-            return new ResponseEntity<>("You must enter your password",HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Please complete this field with your password", HttpStatus.FORBIDDEN);
         }
 
         if (clientService.existsClientByEmail(email)) {
-            return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Already exists a client with this email", HttpStatus.FORBIDDEN);
         }
 
         Client newClient = new Client(firstName, lastName, email, passwordEncoder.encode(password));
@@ -78,19 +79,20 @@ public class ClientController {
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
     public String generateNumber(int min, int max) {
-        List<AccountDTO> accounts = accountService.findAllAccounts().stream().map(account -> new AccountDTO(account)).collect(Collectors.toList());
-        Set<String> setAccounts = accounts.stream().map(accountDTO ->
-                accountDTO.getNumber()
-        ).collect(Collectors.toSet());
+        List<AccountDTO> accounts = accountService.findAllAccounts().stream().map(
+                account -> new AccountDTO(account)).collect(Collectors.toList());
+        Set<String> setAccounts = accounts.stream().map(accountDTO -> accountDTO.getNumber()).collect(
+                Collectors.toSet());
         String aux = "VIN - ";
         long number;
-        String numbercompleted;
-        do{
+        String numberCompleted;
+        do {
             number = (int) ((Math.random() * (max - min)) + min);
             String formattedNumber = String.format("%03d", number);
-            numbercompleted = aux + formattedNumber;
-        } while (setAccounts.contains(numbercompleted));
-        return  numbercompleted;
+            numberCompleted = aux + formattedNumber;
+        } while (setAccounts.contains(numberCompleted));
+        return numberCompleted;
     }
 }

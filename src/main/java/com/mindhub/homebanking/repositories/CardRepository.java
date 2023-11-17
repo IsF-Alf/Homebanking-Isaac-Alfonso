@@ -13,6 +13,6 @@ public interface CardRepository extends JpaRepository<Card, Long> {
 
     boolean findByCvv (String cvv);
 
-    boolean existsByTypeAndColorAndClient (CardType type , CardColor color, Client client);
+    boolean existsCardByTypeAndColorAndClientAndActive (CardType type , CardColor color, Client client, Boolean active);
 
 }

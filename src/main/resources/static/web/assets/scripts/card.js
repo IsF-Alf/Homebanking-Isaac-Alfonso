@@ -32,5 +32,14 @@ filterCredit(){
 filterDebit(){
   this.debitCard = this.cards.filter(card => card.type === "DEBIT")
 },
+logoutClient(){
+  axios
+  .post("/api/logout")
+  .then((response) => {
+    console.log("signed out!!!");
+    location.href = "http://localhost:8080";
+  })
+  .catch((error) => console.log(error));
+},
   },
 }).mount("#app");

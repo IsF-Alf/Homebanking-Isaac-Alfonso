@@ -10,6 +10,7 @@ createApp({
       emailRegister: "",
       passwordRegister: "",
       msjError:"",
+      showRegisterForm: false,
     };
   },
   created() {},
@@ -22,7 +23,7 @@ createApp({
           console.log("signed in!!!");
           location.pathname = "/web/accounts.html";
         })
-        .catch((error) => console.log(error));
+        .catch((error) => alert("Wrong username or password"));
     },
     logoutClient() {
       axios.post("/api/logout").then((response) => {
@@ -44,6 +45,9 @@ createApp({
         .catch((error) =>
         {error.response.data = this.msjError 
           console.log(this.msjError)} );
+    },
+    toggleRegisterForm() {
+      this.showRegisterForm = !this.showRegisterForm;
     },
   },
 }).mount("#app");

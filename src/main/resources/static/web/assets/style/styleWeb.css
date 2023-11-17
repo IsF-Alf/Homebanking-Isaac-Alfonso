@@ -154,6 +154,10 @@ article {
     width: 30vw !important;
 }
 
+.botonRegister{
+    margin-left: 1rem !important;
+}
+
 .titles {
     z-index: 1 !important;
     color: white !important;

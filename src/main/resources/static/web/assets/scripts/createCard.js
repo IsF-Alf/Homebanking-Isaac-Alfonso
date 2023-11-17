@@ -22,5 +22,17 @@ createApp({
         .catch((error) => 
         this.messageError = error.response.data);
     },
+    logoutClient() {
+      axios
+        .post(`/api/logout`)
+        .then((response) => {
+          console.log("SingOut");
+          location.pathname = `/index.html`;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
+  
 }).mount("#app");

@@ -10,6 +10,11 @@ createApp({
   },
   created() {
     axios
+      .get("/api/clients/current", {
+        headers: { accept: "application/xml" },
+      })
+      .then((response) => console.log(response.data));
+    axios
       .get("/api/clients/current")
       .then((response) => {
         client = response.data;
@@ -23,22 +28,23 @@ createApp({
       .catch((error) => console.log(error));
   },
   methods: {
-    logoutClient(){
-          axios
-          .post("/api/logout")
-          .then((response) => {
-            console.log("signed out!!!");
-            location.href = "http://localhost:8080";
-          })
-          .catch((error) => console.log(error));
-        },
-        createAccount(){
-          axios.post('/api/clients/current/accounts')
-      .then(response=>{
-        console.log("created")
-        location.reload();        
-      })
-      .catch(error => console.log("error"))
-        }
-      },
+    logoutClient() {
+      axios
+        .post("/api/logout")
+        .then((response) => {
+          console.log("signed out!!!");
+          location.href = "http://localhost:8080";
+        })
+        .catch((error) => console.log(error));
+    },
+    createAccount() {
+      axios
+        .post("/api/clients/current/accounts")
+        .then((response) => {
+          console.log("created");
+          location.reload();
+        })
+        .catch((error) => console.log("error"));
+    },
+  },
 }).mount("#app");

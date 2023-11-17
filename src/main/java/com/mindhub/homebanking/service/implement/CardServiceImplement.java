@@ -15,8 +15,8 @@ public class CardServiceImplement implements CardService {
     CardRepository cardRepository;
 
     @Override
-    public Boolean existsCardByTypeAndColorAndClient(CardType type, CardColor color, Client client) {
-        return cardRepository.existsByTypeAndColorAndClient(type, color, client);
+    public Boolean existsCardByTypeAndColorAndClientAndActive(CardType type, CardColor color, Client client, Boolean active) {
+        return cardRepository.existsCardByTypeAndColorAndClientAndActive(type, color, client, active);
     }
 
     @Override

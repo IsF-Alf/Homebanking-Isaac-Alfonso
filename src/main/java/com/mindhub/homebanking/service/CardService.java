@@ -4,11 +4,12 @@ import com.mindhub.homebanking.models.Card;
 import com.mindhub.homebanking.models.CardColor;
 import com.mindhub.homebanking.models.CardType;
 import com.mindhub.homebanking.models.Client;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
+import java.util.List;
 
 public interface CardService {
-    Boolean existsCardByTypeAndColorAndClient (CardType type, CardColor color, Client client);
+    Boolean existsCardByTypeAndColorAndClientAndActive (CardType type, CardColor color, Client client, Boolean active);
     void saveCard (Card card);
     Boolean existsCardByNumber (String number);
+    Card findById (Long id);
+    List<Card> findAll();
 }

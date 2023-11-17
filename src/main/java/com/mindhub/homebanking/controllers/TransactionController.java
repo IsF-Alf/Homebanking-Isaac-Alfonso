@@ -70,6 +70,7 @@ public class TransactionController {
 
             transactionService.saveTransaction(transactionDebit);
             accountDebit.addTransaction(transactionDebit);
+
             transactionService.saveTransaction(transactionCredit);
             accountCredit.addTransaction(transactionCredit);
 

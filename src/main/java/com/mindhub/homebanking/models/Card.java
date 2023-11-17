@@ -15,17 +15,18 @@ public class Card {
     private CardType type;
     private CardColor color;
     private String number;
-    private String cvv;
+    private int cvv;
     private LocalDate thruDate;
     private LocalDate fromDate;
+    private Boolean active;
     @ManyToOne()
     private Client client;
 
     public Card() {
     }
 
-    public Card(String cardHolder, CardType type, CardColor color, String number, String cvv, LocalDate thruDate,
-                LocalDate fromDate)
+    public Card(String cardHolder, CardType type, CardColor color, String number, int cvv, LocalDate thruDate,
+                LocalDate fromDate, Boolean active)
     {
         this.cardHolder = cardHolder;
         this.type = type;
@@ -34,6 +35,7 @@ public class Card {
         this.cvv = cvv;
         this.thruDate = thruDate;
         this.fromDate = fromDate;
+        this.active = active;
     }
 
     public Long getId() {
@@ -76,11 +78,11 @@ public class Card {
         this.number = number;
     }
 
-    public String getCvv() {
+    public int getCvv() {
         return cvv;
     }
 
-    public void setCvv(String cvv) {
+    public void setCvv(int cvv) {
         this.cvv = cvv;
     }
 
@@ -106,5 +108,13 @@ public class Card {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }
