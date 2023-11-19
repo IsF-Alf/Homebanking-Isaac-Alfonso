@@ -5,8 +5,9 @@ createApp({
     return {
       clientsInformation: {},
       cards: [],
-      creditCard:[],
-      debitCard:[],
+      creditCard: [],
+      debitCard: [],
+      currentDate:new Date(),
     };
   },
   created() {
@@ -25,21 +26,29 @@ createApp({
       })
       .catch((error) => console.log(error));
   },
-  methods:{
-filterCredit(){
-  this.creditCard = this.cards.filter(card => card.type === "CREDIT")
-},
-filterDebit(){
-  this.debitCard = this.cards.filter(card => card.type === "DEBIT")
-},
-logoutClient(){
-  axios
-  .post("/api/logout")
-  .then((response) => {
-    console.log("signed out!!!");
-    location.href = "http://localhost:8080";
-  })
-  .catch((error) => console.log(error));
-},
+  methods: {
+    deleteCard(id) {
+      axios
+        .patch(`/api/clients/current/cards`, `id=${id}`)
+        .then(() => {
+          location.pathname = `/web/assets/pages/card.html`;
+        })
+        .catch((error) => console.log(error));
+    },
+    filterCredit() {
+      this.creditCard = this.cards.filter((card) => card.type === "CREDIT");
+    },
+    filterDebit() {
+      this.debitCard = this.cards.filter((card) => card.type === "DEBIT");
+    },
+    logoutClient() {
+      axios
+        .post("/api/logout")
+        .then((response) => {
+          console.log("signed out!!!");
+          location.href = "http://localhost:8080";
+        })
+        .catch((error) => console.log(error));
+    },
   },
 }).mount("#app");

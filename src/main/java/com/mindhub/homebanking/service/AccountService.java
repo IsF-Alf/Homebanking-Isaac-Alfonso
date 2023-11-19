@@ -13,4 +13,6 @@ public interface AccountService {
     void saveAccount(Account account);
     Boolean existsAccountByNumber (String number);
     Account findAccountByNumber (String number);
+    Account findById (Long id);
+    Boolean existsByActive (Boolean active);
 }

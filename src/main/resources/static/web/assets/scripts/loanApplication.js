@@ -40,22 +40,25 @@ createApp({
           destinationAccount: `${this.destinationAccount}`,
         })
         .then((result) => {
-            location.pathname = `web/accounts.html`;
+          location.pathname = `web/accounts.html`;
         })
         .catch((error) => {
           console.log(error);
         });
     },
+  
+  getInterestPercentage() {
+    return this.loans.find((loan) => loan.id === this.loanId)
+      .interestPercentage;
   },
   logoutClient() {
     axios
-      .post(`/api/logout`)
+      .post("/api/logout")
       .then((response) => {
-        console.log("SingOut");
-        location.pathname = `/index.html`;
+        console.log("signed out!!!");
+        location.href = "http://localhost:8080";
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => console.log(error));
   },
+},
 }).mount("#app");

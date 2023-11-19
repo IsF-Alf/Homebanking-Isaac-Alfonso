@@ -12,6 +12,8 @@ public class ClientLoan {
     private Long id;
     private Double amount;
     private Integer payment;
+    private Double currentAmount;
+    private Integer currentPayments;
     @ManyToOne()
     private Client client;
     @ManyToOne()
@@ -20,15 +22,11 @@ public class ClientLoan {
     public ClientLoan() {
     }
 
-    public ClientLoan(Double amount, Integer payment) {
+    public ClientLoan(Double amount, Integer payment, Double currentAmount, Integer currentPayments) {
         this.amount = amount;
         this.payment = payment;
-    }
-
-    public ClientLoan(Double amount, Integer payment,  Loan loan) {
-        this.amount = amount;
-        this.payment = payment;
-        this.loan = loan;
+        this.currentAmount = currentAmount;
+        this.currentPayments = currentPayments;
     }
 
     public Long getId() {
@@ -65,5 +63,21 @@ public class ClientLoan {
 
     public void setLoan(Loan loan) {
         this.loan = loan;
+    }
+
+    public Double getCurrentAmount() {
+        return currentAmount;
+    }
+
+    public void setCurrentAmount(Double currentAmount) {
+        this.currentAmount = currentAmount;
+    }
+
+    public Integer getCurrentPayments() {
+        return currentPayments;
+    }
+
+    public void setCurrentPayments(Integer currentPayments) {
+        this.currentPayments = currentPayments;
     }
 }

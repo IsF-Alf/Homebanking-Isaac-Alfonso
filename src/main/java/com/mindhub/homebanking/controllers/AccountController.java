@@ -2,6 +2,7 @@ package com.mindhub.homebanking.controllers;
 
 import com.mindhub.homebanking.dto.AccountDTO;
 import com.mindhub.homebanking.models.Account;
+import com.mindhub.homebanking.models.AccountType;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.service.AccountService;
 import com.mindhub.homebanking.service.ClientService;
@@ -59,7 +60,7 @@ public class AccountController {
     }
 
     @PostMapping("/clients/current/accounts")
-    public ResponseEntity<Object> createAccount(Authentication authentication) {
+    public ResponseEntity<Object> createAccount(Authentication authentication, @RequestParam AccountType accountType) {
         Client client = (clientService.findClientByEmail(authentication.getName()));
         if (!clientService.existsClientByEmail(authentication.getName())) {
             return new ResponseEntity<>("The client was not found", HttpStatus.NOT_FOUND);
@@ -67,11 +68,38 @@ public class AccountController {
         if (client.getAccounts().size() >= 3) {
             return new ResponseEntity<>("You have reached the limit of created accounts", HttpStatus.FORBIDDEN);
         } else {
-            Account account = new Account(generateNumber(), LocalDate.now(), 0.00);
+            Account account = new Account(generateNumber(), LocalDate.now(), 0.00,true, accountType);
             accountService.saveAccount(account);
             client.addAccount(account);
             clientService.saveClient(client);
             return new ResponseEntity<>("Account created successfully", HttpStatus.CREATED);
+        }
+    }
+
+    @PutMapping("/clients/current/accounts")
+    public ResponseEntity<Object> deleteAccount(Authentication authentication, @RequestParam Long id) {
+        Client client = clientService.findClientByEmail(authentication.getName());
+        Account account = accountService.findById(id);
+        if (account == null) {
+            return new ResponseEntity<>("The account doesn't exist",
+                    HttpStatus.FORBIDDEN);
+        }
+        if (account.getBalance() != 0) {
+            return new ResponseEntity<>("You can not delete an account with a balance greater than zero",
+                    HttpStatus.FORBIDDEN);
+        }
+        if (!account.getActive()) {
+            return new ResponseEntity<>("The account is inactive",
+                    HttpStatus.FORBIDDEN);
+        }
+        if (!account.getClient().equals(client)) {
+            return new ResponseEntity<>("The account doesn't belong to the authenticated client",
+                    HttpStatus.FORBIDDEN);
+        } else {
+            account.setActive(false);
+            account.getTransaction().forEach(transaction -> transaction.setActive(false));
+            accountService.saveAccount(account);
+            return new ResponseEntity<>("Account deleted successfully", HttpStatus.CREATED);
         }
     }
 

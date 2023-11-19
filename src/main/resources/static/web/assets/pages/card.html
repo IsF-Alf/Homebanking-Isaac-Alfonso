@@ -32,7 +32,7 @@
             <div>
                 <h3 class="text-center">Debit cards</h3>
                 <div class="containerCRD" v-for="card of debitCard" v-if="debitCard.length> 0">
-                    <div class="cardCRD">
+                    <div class="cardCRD" :class="{'cardThruDate': card.thruDate > currentDate.toLocaleDateString()}">
                         <div class="card-innerCRD">
                             <div class="frontCRD" :class="{
                                 'cardGold': card.color === 'GOLD',
@@ -79,13 +79,17 @@
                             </div>
                         </div>
                     </div>
+                    <p v-if="card.thruDate > currentDate.toLocaleDateString()">Expired card</p>
+                    <div>
+                        <a class="Btn" @click.prevent="deleteCard(card.id)" data-text="Delete Card">Delete Card</a>
+                    </div>
                 </div>
                 <h4 v-else>You dont have a debit card</h4>
             </div>
             <div>
                 <h3 class="text-center">Credit cards</h3>
                 <div class="containerCRD" v-for="card of creditCard" v-if="creditCard.length> 0">
-                    <div class="cardCRD">
+                    <div class="cardCRD" :class="{'cardThruDate': card.thruDate > currentDate.toLocaleDateString()}">
                         <div class="card-innerCRD">
                             <div class="frontCRD" :class="{
                                 'cardGold': card.color === 'GOLD',
@@ -131,6 +135,10 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <p v-if="card.thruDate > currentDate.toLocaleDateString()">Expired card</p>
+                    <div>
+                        <a class="Btn" @click.prevent="deleteCard(card.id)" data-text="Delete Card">Delete Card</a>
                     </div>
                 </div>
                 <h4 v-else>You dont have a credit card </h4>

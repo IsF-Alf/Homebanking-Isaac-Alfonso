@@ -26,6 +26,7 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/api/login" , "/api/clients").permitAll()
                 .antMatchers("/api/clients/current/**").hasAuthority("CLIENT")
                 .antMatchers(HttpMethod.POST, "/api/clients/current/**").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.GET, "/api/clients").hasAuthority("ADMIN")
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .antMatchers("/rest/**").hasAuthority("ADMIN");
         http.formLogin()
@@ -36,16 +37,11 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/api/logout");
         http.csrf()
                 .disable();
-        http.headers()
-                .frameOptions().disable();
-        http.exceptionHandling()
-                .authenticationEntryPoint((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED));
-        http.formLogin()
-                .successHandler((req, res, auth) -> clearAuthenticationAttributes(req));
-        http.formLogin()
-                .failureHandler((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED));
-        http.logout()
-                .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
+        http.headers().frameOptions().disable();
+        http.exceptionHandling().authenticationEntryPoint((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED));
+        http.formLogin().successHandler((req, res, auth) -> clearAuthenticationAttributes(req));
+        http.formLogin().failureHandler((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED));
+        http.logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
     }
     private void clearAuthenticationAttributes(HttpServletRequest request) {
         HttpSession session = request.getSession(false);

@@ -233,6 +233,10 @@ footer {
 .cardTitanium {
     background-image: linear-gradient(-45deg, #0e0e0d, #0c0c0ce0, #47473f) !important;
 }
+.cardThruDate{
+    box-shadow: rgba(219, 6, 6, 0.692) 0px 5px 15px;
+    border-radius: 15px
+}
 
 .Btn {
     width: auto;
@@ -316,8 +320,9 @@ footer {
     width: 40vw !important;
     background: rgb(236, 234, 241) !important;
     display: flex !important;
+    flex-direction: column !important;
     align-items: center !important;
-    justify-content: center !important;
+    justify-content: center !important;    
 }
 
 
@@ -492,6 +497,14 @@ footer {
     justify-content: center !important;
     padding: 0px 0px 10px 0px !important;
     background-color: #efeff3 !important;
+    gap: 40px !important;
+}
+
+.modal-title{
+    width: 100% !important;
+    text-align: center !important;
+    color: #ffd277;
+    background-color:rgb(37, 3, 68) !important;
 }
 
 .price {

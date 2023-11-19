@@ -8,4 +8,6 @@ public interface LoanService {
     List<Loan> findAllLoans();
 
     Loan findLoanById(Long id);
+    void saveLoan (Loan loan);
+    Boolean existsByName (String name);
 }

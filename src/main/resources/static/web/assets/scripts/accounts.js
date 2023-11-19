@@ -6,14 +6,10 @@ createApp({
       clientsInformation: {},
       accounts: [],
       loans: [],
+      accountType: null,
     };
   },
   created() {
-    axios
-      .get("/api/clients/current", {
-        headers: { accept: "application/xml" },
-      })
-      .then((response) => console.log(response.data));
     axios
       .get("/api/clients/current")
       .then((response) => {
@@ -39,12 +35,25 @@ createApp({
     },
     createAccount() {
       axios
-        .post("/api/clients/current/accounts")
+        .post(
+          `/api/clients/current/accounts`,
+          `accountType=${this.accountType}`
+        )
         .then((response) => {
           console.log("created");
           location.reload();
         })
         .catch((error) => console.log("error"));
+    },
+    deleteAccount(id) {
+      axios
+        .put(`/api/clients/current/accounts`, `id=${id}`)
+        .then(() => {
+          location.pathname = `/web/accounts.html`;
+        })
+        .catch((error) => {
+          alert(error.response.data);
+        });
     },
   },
 }).mount("#app");

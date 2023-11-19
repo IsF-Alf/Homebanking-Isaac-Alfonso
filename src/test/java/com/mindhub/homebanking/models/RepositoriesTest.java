@@ -47,9 +47,9 @@ public class RepositoriesTest {
         assertThat(account,is(notNullValue()));
     }
     @Test
-    public void existCardByTypeAndColorAndClient(){
+    public void existsCardByTypeAndColorAndClientAndActive(){
         Client client = clientRepository.findByEmail("melba@mindhub.com");
-        Boolean card = cardRepository.existsByTypeAndColorAndClient(CardType.CREDIT, CardColor.TITANIUM , client);
+        Boolean card = cardRepository.existsCardByTypeAndColorAndClientAndActive(CardType.CREDIT, CardColor.TITANIUM , client, false);
         assertThat(card,is(true));
     }
     @Test

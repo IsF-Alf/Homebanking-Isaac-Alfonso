@@ -20,10 +20,12 @@
                 <img class="imgLogo" src="./assets/images/logoBank.png" alt="">
             </nav>
             <div class="navLink d-flex justify-content-evenly">
-                <button class="Btn" @click="createAccount" data-text="Create account">Create account</button>
+                <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="Btn"
+                    data-text="Create account">Create account</button>
                 <a class="Btn" href="./assets/pages/card.html" data-text="Cards">Cards</a>
                 <a class="Btn" href="./assets/pages/transfers.html" data-text="Transfer">Transfer</a>
-                <a class="Btn" href="./assets/pages/loanApplication.html" data-text="Loan Application">Loan Application</a>
+                <a class="Btn" href="./assets/pages/loanApplication.html" data-text="Loan Application">Loan
+                    Application</a>
                 <button class="Btn" type="button" @click.prevent="logoutClient()" data-text="logout">logout</button>
             </div>
             <h2>Welcome, {{clientsInformation.firstName}} {{clientsInformation.lastName}}, to your online bank</h2>
@@ -35,6 +37,8 @@
                     <div v-for="account of accounts" class="card checkout">
                         <label class="title">Number account: {{account.number}}</label>
                         <div class="details">
+                            <span style="text-align: center !important;">      {{account.accountType}} ACCOUNT</span>
+                            <span></span>
                             <span>Creation date: </span>
                             <span>{{account.creationDate}}</span>
                             <span>Balance:</span>
@@ -44,6 +48,32 @@
                         <div class="checkout--footer d-flex justify-content-center" style="border-radius: 15px;">
                             <a :href=`http://localhost:8080/web/assets/pages/account.html?id=${account.id}` class="Btn"
                                 data-text="Transactions">Transactions</a>
+                            <button class="Btn" type="button" @click.prevent="deleteAccount(account.id)"
+                                data-text="Delete account">Delete account</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title fs-5" id="exampleModalLabel">ACCOUNT TYPE</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group mb-3">
+                                <select v-model="accountType" class="form-select" aria-label="Default select example">
+                                    <option value="null" selected>Select account type</option>
+                                    <option v-for="account of accounts" :value="account.accountType">{{
+                                        account.accountType }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancell</button>
+                            <button @click="createAccount()" type="button" class="btn btn-success">Confirm</button>
                         </div>
                     </div>
                 </div>

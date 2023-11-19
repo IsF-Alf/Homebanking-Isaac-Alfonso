@@ -69,18 +69,21 @@ public class Client {
         return accounts;
     }
 
-    public void addAccount(Account account) {
-        account.setClient(this);
-        accounts.add(account);
-    }
-
     public Set<ClientLoan> getClientLoans() {
         return clientLoans;
     }
 
-    public void addClientLoan(ClientLoan cLientLoan) {
-        cLientLoan.setClient(this);
-        clientLoans.add(cLientLoan);
+    @JsonIgnore
+    public List<Loan> getLoans() {
+        return clientLoans.stream().map(clientLoan -> clientLoan.getLoan()).collect(Collectors.toList());
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Set<Card> getCards() {
@@ -92,16 +95,15 @@ public class Client {
         cards.add(card);
     }
 
-    @JsonIgnore
-    public List<Loan> getLoans() {
-        return clientLoans.stream().map(loan -> loan.getLoan()).collect(Collectors.toList());
+    public void addAccount(Account account) {
+        account.setClient(this);
+        accounts.add(account);
     }
 
-    public String getPassword() {
-        return password;
+    public void addClientLoan(ClientLoan cLientLoan) {
+        cLientLoan.setClient(this);
+        clientLoans.add(cLientLoan);
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+
 }

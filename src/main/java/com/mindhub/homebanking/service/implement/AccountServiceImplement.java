@@ -37,4 +37,13 @@ public class AccountServiceImplement implements AccountService {
     public Account findAccountByNumber(String number) {
         return accountRepository.findByNumber(number);
     }
+    @Override
+    public Account findById(Long id) {
+        return accountRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Boolean existsByActive(Boolean active) {
+        return accountRepository.existsByActive(active);
+    }
 }

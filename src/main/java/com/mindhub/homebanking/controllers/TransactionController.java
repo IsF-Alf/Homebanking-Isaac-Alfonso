@@ -63,10 +63,12 @@ public class TransactionController {
                     HttpStatus.FORBIDDEN);
         } else {
             Transaction transactionDebit = new Transaction(TransactionType.DEBIT, (-amount),
-                    accountDebit.getNumber() + description, LocalDateTime.now());
+                    accountDebit.getNumber() + description, LocalDateTime.now(), accountDebit.getBalance() - amount,
+                    true);
 
             Transaction transactionCredit = new Transaction(TransactionType.CREDIT, amount,
-                    accountCredit.getNumber() + description, LocalDateTime.now());
+                    accountCredit.getNumber() + description, LocalDateTime.now(), accountCredit.getBalance() + amount,
+                    true);
 
             transactionService.saveTransaction(transactionDebit);
             accountDebit.addTransaction(transactionDebit);

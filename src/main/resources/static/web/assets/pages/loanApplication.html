@@ -32,7 +32,7 @@
                     <select v-model="loanId" class="form-select" aria-label="Default select example">
                         <option >Select the type of loan</option>
                         <option v-for="loan in loans" :value="loan.id">{{ loan.name }} (Max amount: US$
-                            {{(Number(loan.maxAmount))}})</option>
+                            {{(Number(loan.maxAmount))}} - Interest: {{(loan.interestRate * 100)}}%)</option>
                     </select>
                 </div>
                 <div class="form-check form-check-inline d-flex flex-column align-items-center" v-if="loanId"
@@ -61,7 +61,7 @@
             <div>
                 <h6 v-if="loanId && amount && payments"
                     style="text-align: center; display: flex; justify-content: center;">To be paid in {{payments}}
-                    payments of US$ {{(Number(amount * 1.20) / payments)}}</h6>
+                    payments of US$ {{(Number(amount + (amount * getInterestRate())) / payments)}}</h6>
             </div>
             <div class="col-auto d-flex justify-content-around">
                 <button type="button" class="Btn" @click.prevent="applyForLoan" data-text="Apply">Apply</button>
