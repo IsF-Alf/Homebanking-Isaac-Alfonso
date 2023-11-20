@@ -13,7 +13,7 @@
 
 <body>
     <div id="app" v-cloak>
-        <header class="d-flex flex-column align-items-center headerAccount">
+        <header class="d-flex flex-column align-items-center headerPayLoan">
             <nav class="d-flex justify-content-around align-items-center">
                 <img class="imgLogo" src="../images/logo.png" alt="">
                 <h1>Brothers Bank</h1>
@@ -26,41 +26,41 @@
                 <a class="Btn" href="./loanApplication.html" data-text="Loan application">Loan application</a>
                 <button class="Btn" type="button" @click.prevent="logoutClient()" data-text="logout">logout</button>
             </div>
+            <h2>Pay your loan here</h2>
         </header>
-        <main class=" d-flex align-items-center flex-column mainAccount">
-            <div>
-                <div class="input-group mb-3">
-                    <select v-model="idLoan" class="form-select" aria-label="Default select example">
-                        <option value="0">Select the loan to pay</option>
-                        <option v-for="loan of loans" :value="loan.id">{{loan.name}} Value of your fee: US${{new
-                            Intl.NumberFormat("de-DE").format(loan.amount/loan.payments)}}</option>
-                    </select>
+        <main class=" d-flex align-items-center flex-column mainPayLoan">
+            <div class=" transferInp">
+                <div>
+                    <div class="input-group mb-3">
+                        <select v-model="idLoan" class="form-select" aria-label="Default select example">
+                            <option value="0">Select the loan to pay</option>
+                            <option v-for="loan of loans" :value="loan.id">{{loan.name}} Value of your fee: US${{new
+                                Intl.NumberFormat("de-DE").format(loan.amount/loan.payments)}}</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <select v-model="idAccount" class="form-select" aria-label="Default select example">
+                            <option value="0">Select your payment account</option>
+                            <option v-for="account of accounts" :value="account.id">{{account.number}}
+                                (Balance: US${{new
+                                Intl.NumberFormat("de-DE").format(account.balance)}})
+                            </option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            Enter the amount here US$</span>
+                        <input v-model="amount" type="number" class="form-control" @keyup.enter="payLoan()">
+                    </div>
                 </div>
-                <div class="input-group mb-3">
-                    <select v-model="idAccount" class="form-select" aria-label="Default select example">
-                        <option value="0">Select your payment account</option>
-                        <option v-for="account of accounts" :value="account.id">{{account.number}}
-                            (Balance: US${{new
-                            Intl.NumberFormat("de-DE").format(account.balance)}})
-                        </option>
-                    </select>
+                <div class="col-auto d-flex justify-content-center">
+                    <button style="background-color: rgb(53, 162, 159) !important; border: none; margin-top: 1rem;"
+                        type="button" class="Btn" @click.prevent="payLoan()" @keyup.enter="payLoan()"
+                        data-text="Confirm pay">Confirm pay</button>
                 </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text">
-                        Enter the amount here US$</span>
-                    <input v-model="amount" type="number" class="form-control"
-                        @keyup.enter="payLoan()">
-                </div>
-
             </div>
-
-            <div class="col-auto d-flex justify-content-center">
-                <button style="background-color: rgb(53, 162, 159) !important; border: none; margin-top: 1rem;"
-                    type="button" class="Btn" @click.prevent="payLoan()" @keyup.enter="payLoan()"
-                    data-text="Confirm pay">Confirm pay</button>
-            </div>
+        </main>
     </div>
-    </main>
     <footer class="d-flex justify-content-around align-items-center">
         <p class="slogan">Legacy, Trust, Brotherhood: Elevating Your Financial Journey.</p>
         <div>

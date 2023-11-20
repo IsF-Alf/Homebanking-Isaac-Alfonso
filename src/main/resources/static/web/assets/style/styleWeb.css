@@ -30,8 +30,19 @@ header {
 .headerAccount {
     height: 22vh;
 }
+.headerLoanApply{
+    height: 30vh;
+}
+
+.headerPayLoan{
+    height: 30vh;
+}
 
 .headerCard {
+    height: 30vh;
+}
+
+.headerTransfer{
     height: 30vh;
 }
 
@@ -125,9 +136,86 @@ main {
     gap: 3rem !important;
 }
 
-.mainWithForm{
-    min-height: 68vh !important;
+.mainWithForm {
+    min-height: 60vh !important;
     gap: 1rem !important;
+    position: relative;
+}
+
+.mainWithForm::before {
+    object-fit: contain;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 105%;
+    background-image: url(../images/transferSinFondo.png);
+    background-repeat: no-repeat;
+    background-position: 63% 50%;
+    background-size: 85% 100%;
+    opacity: 0.3;
+    gap: 2rem;
+}
+
+.mainWithFormLoan{
+    min-height: 60vh !important;
+    gap: 1rem !important;
+    position: relative;
+}
+.mainWithFormLoan::before{
+    object-fit: contain;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 105%;
+    background-image: url(../images/loansSinFondo.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 85% 100%;
+    opacity: 0.4;
+    gap: 2rem;
+}
+
+.mainLogin{
+    min-height: 65vh !important;
+    gap: 1rem !important;
+    position: relative;
+}
+.mainLogin::before{
+    object-fit: contain;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 105%;
+    background-image: url(../images/loginSinFondo.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 70% 100%;
+    opacity: 0.4;
+    gap: 2rem;
+}
+
+.mainPayLoan{
+    min-height: 60vh !important;
+    gap: 1rem !important;
+    position: relative;
+}
+.mainPayLoan::before{
+    object-fit: contain;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 105%;
+    background-image: url(../images/payLoanSinFondo.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 70% 100%;
+    opacity: 0.4;
+    gap: 2rem;
+}
+
+.transferInp {
+    position: relative;
+    z-index: 1;
 }
 
 .mainCard {
@@ -206,8 +294,9 @@ article {
     width: 80vw;
     height: 25vh;
     align-items: center;
-    gap: 15rem;
+    gap: 10rem;
     margin-bottom: 1rem !important;
+    justify-content: center;
 }
 
 .imgHome {
@@ -216,8 +305,8 @@ article {
     height: 25vh;
 }
 
-p {
-    width: 44vw;
+.textIndex {
+    width: 35vw;
 }
 
 .warninAdmin {
@@ -576,11 +665,11 @@ footer {
     color: #47484b !important;
 }
 
-.transferInp{
+.transferInp {
     width: 40vw;
 }
 
-.forChe{
+.forChe {
     padding-left: 2rem !important;
     min-height: 10px !important;
 }
@@ -639,6 +728,39 @@ footer {
     .slogan {
         display: none;
     }
+
+    .presHome{
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+        min-height: 70vh;
+    }
+
+    .titles{
+        font-size: 2rem !important;
+    }
+
+    .anchor{
+        padding-right: 1rem !important;
+        margin-bottom: 8px !important;
+    }
+
+    .carHeader {
+        width: 90vw !important;
+        margin-bottom: 10px !important;
+    }
+
+    .textIndex {
+        width: 90vw;
+    }
+
+    article {
+        width: 90vw;
+    }
+
+    .imgHome {
+        width: 75vw;
+    }
 }
 
 @media(min-width: 721px) and (max-width:1330px) {
@@ -646,12 +768,36 @@ footer {
         height: 30vh;
     }
 
+    .anchor{
+        padding-right: 4rem !important;
+        margin-bottom: 8px !important;
+    }
+
+    .textIndex {
+        width: 40vw;
+    }
+
+    article {
+        width: 39vw;
+    }
+
+    .imgHome {
+        width: 40vw;
+        height: 30vh;
+    }
+
+    .presHome{
+        gap: 3rem;
+        width: 100%;
+        min-height: 45vh;
+    }
+
     .warninAdmin {
         width: 84vw;
     }
 
     .card {
-        
+
         width: 47vw !important;
     }
 

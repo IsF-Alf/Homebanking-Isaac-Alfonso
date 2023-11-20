@@ -13,7 +13,7 @@
 
 <body>
     <div id="app" v-cloak>
-        <header class="d-flex flex-column align-items-center headerAccount">
+        <header class="d-flex flex-column align-items-center headerTransfer">
             <nav class="d-flex justify-content-around align-items-center">
                 <img class="imgLogo" src="../images/logo.png" alt="">
                 <h1>Brothers Bank</h1>
@@ -22,10 +22,10 @@
             <div class="navLink d-flex justify-content-evenly">
                 <a class="Btn" href="../../accounts.html" data-text="Accounts">Accounts</a>
                 <a class="Btn" href="./card.html" data-text="Cards">Cards</a>
-                <a class="Btn" href="./transfers.html" data-text="Transfer">Transfer</a>
                 <a class="Btn" href="./loanApplication.html" data-text="Loan application">Loan application</a>
                 <button class="Btn" type="button" @click.prevent="logoutClient()" data-text="logout">logout</button>
             </div>
+            <h2>Make your transfers here</h2>
         </header>
         <main class=" d-flex align-items-center flex-column mainWithForm">
             <div class=" transferInp">
@@ -80,10 +80,10 @@
                     <textarea v-model="description" class="form-control" aria-label="With textarea"></textarea>
                 </div>
             </div>
-            <button type="button" class="Btn" @click.prevent="generateTransfer" data-text="Confirm transfer">Confirm
-                transfer</button>
+            <button type="button" class="Btn" @click.prevent="generateTransfer"
+                data-text="Confirm transfer">Confirm transfer</button>
+        </main>
     </div>
-    </main>
     <footer class="d-flex justify-content-around align-items-center">
         <p class="slogan">Legacy, Trust, Brotherhood: Elevating Your Financial Journey.</p>
         <div>
