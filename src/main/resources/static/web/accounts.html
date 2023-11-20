@@ -19,9 +19,11 @@
                 <h1>Brothers Bank</h1>
                 <img class="imgLogo" src="./assets/images/logoBank.png" alt="">
             </nav>
+            <p v-if="userEmail.includes('mindbank')" class="warninAdmin">Attention Administrators: Please exercise caution when utilizing the services</p>
             <div class="navLink d-flex justify-content-evenly">
                 <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="Btn"
                     data-text="Create account">Create account</button>
+                <a v-if="userEmail.includes('mindbank')" class="Btn" href="./assets/pages/newLoan.html" data-text="Create new loan">Create new loan</a>
                 <a class="Btn" href="./assets/pages/card.html" data-text="Cards">Cards</a>
                 <a class="Btn" href="./assets/pages/transfers.html" data-text="Transfer">Transfer</a>
                 <a class="Btn" href="./assets/pages/loanApplication.html" data-text="Loan Application">Loan
@@ -32,12 +34,12 @@
         </header>
         <main class=" d-flex align-items-center flex-column">
             <h3>These are your accounts:</h3>
-            <div class="d-flex">
+            <div class="d-flex accountsPrin">
                 <div class="d-flex gap-3 align-items-center accounts">
                     <div v-for="account of accounts" class="card checkout">
                         <label class="title">Number account: {{account.number}}</label>
                         <div class="details">
-                            <span style="text-align: center !important;">      {{account.accountType}} ACCOUNT</span>
+                            <span style="text-align: center !important;"> {{account.accountType}} ACCOUNT</span>
                             <span></span>
                             <span>Creation date: </span>
                             <span>{{account.creationDate}}</span>
@@ -79,7 +81,7 @@
                 </div>
             </div>
             <h3>Your loans</h3>
-            <div class="d-flex gap-3 align-items-center" v-if="loans.length>0">
+            <div class="d-flex gap-3 align-items-center contLoan" v-if="loans.length>0">
                 <div v-for="loan of loans" class="card checkout">
                     <label class="title">Type Loan: {{loan.name}}</label>
                     <div class="details">
@@ -88,15 +90,23 @@
                             Intl.NumberFormat("de-DE").format(loan.amount)}}</span>
                         <span>Payments:</span>
                         <span>{{loan.payments}}</span>
+                        <span>Outstanding amount:</span>
+                        <span>${{new
+                            Intl.NumberFormat("de-DE").format(loan.currentAmount)}}</span>
+                        <span>Remaining payments:</span>
+                        <span>{{loan.currentPayments}}</span>
                     </div>
                 </div>
             </div>
             <h2 v-else>You don't have loans</h2>
+            <div class="payLoan">
+                <a class="Btn" href="./assets/pages/payLoan.html" data-text="Pay your loan here">Pay your loan here</a>
+            </div>
     </div>
     </main>
     <footer class="d-flex justify-content-around align-items-center">
         <p class="slogan">Legacy, Trust, Brotherhood: Elevating Your Financial Journey.</p>
-        <div>
+        <div class="contImgFoot">
             <img class="imgFoot" src="./assets/images/facebook.png" alt="">
             <img class="imgFoot" src="./assets/images/instagram.png" alt="">
             <img class="imgFoot" src="./assets/images/whatsapp.png" alt="">

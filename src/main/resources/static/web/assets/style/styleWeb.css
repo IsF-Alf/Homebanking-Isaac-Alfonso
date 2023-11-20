@@ -31,7 +31,7 @@ header {
     height: 22vh;
 }
 
-.headerCard{
+.headerCard {
     height: 30vh;
 }
 
@@ -49,7 +49,13 @@ nav {
 .navLink {
     margin-top: 6px !important;
     height: 5vh;
-    width: 40vw;
+    width: 45vw;
+}
+
+.navLinkAdm {
+    margin-top: 0px !important;
+    height: 5vh;
+    width: 45vw;
 }
 
 h1 {
@@ -61,18 +67,24 @@ h1 {
     text-align: center;
 }
 
-h4{
+h4 {
     font-weight: bold !important;
 }
 
-.slogan {    
-    background-clip: text; 
-    background: linear-gradient(to right, #f0a206, #ffd277, #b87d08, #af910b, #ffd277, #f0a206);
+.chekNewLoan {
+    padding-left: 2rem !important;
+    gap: 2rem !important;
+}
+
+.slogan {
+    background-clip: text;
+    background: linear-gradient(to right, #f0a206, #ffd277, #b8a608, #af910b, #ffd277, #f0a206);
     -webkit-background-clip: text;
     color: transparent;
     border-radius: 5px;
     width: auto;
     text-align: center;
+    font-weight: bold !important;
 }
 
 .navLink>a {
@@ -113,15 +125,21 @@ main {
     gap: 3rem !important;
 }
 
-.mainCard{
+.mainWithForm{
+    min-height: 68vh !important;
+    gap: 1rem !important;
+}
+
+.mainCard {
     gap: 3rem !important;
     min-height: 65vh !important;
 }
+
 .rowTable {
     height: 2rem !important;
 }
 
-.mainNewCard{
+.mainNewCard {
     min-height: 60vh !important;
 }
 
@@ -133,15 +151,17 @@ h2 {
     padding-left: 2rem !important;
     padding-right: 2rem !important;
     border-radius: 1rem;
-    margin-top: 1rem !important;
+    margin-top: 10px !important;
+    margin-bottom: 0px !important;
 }
 
 h3 {
     color: rgb(37, 3, 68) !important;
     margin: 1rem !important;
+    margin-bottom: 5px !important;
 }
 
-.regH3{
+.regH3 {
     color: rgb(37, 3, 68) !important;
     margin: 0 !important;
 }
@@ -154,7 +174,7 @@ article {
     width: 30vw !important;
 }
 
-.botonRegister{
+.botonRegister {
     margin-left: 1rem !important;
 }
 
@@ -197,7 +217,13 @@ article {
 }
 
 p {
-    width: 35vw;
+    width: 44vw;
+}
+
+.warninAdmin {
+    color: red !important;
+    font-weight: bold !important;
+    margin-bottom: 0 !important;
 }
 
 footer {
@@ -233,13 +259,19 @@ footer {
 .cardTitanium {
     background-image: linear-gradient(-45deg, #0e0e0d, #0c0c0ce0, #47473f) !important;
 }
-.cardThruDate{
+
+.cardThruDate {
     box-shadow: rgba(219, 6, 6, 0.692) 0px 5px 15px;
     border-radius: 15px
 }
 
+.payLoan {
+    margin-top: 5px !important;
+    margin-bottom: 15px !important;
+}
+
 .Btn {
-    width: auto;
+    width: fit-content;
     height: 35px;
     border: none;
     border-radius: 10px;
@@ -290,29 +322,6 @@ footer {
     transform: scale(0.95);
 }
 
-@media(max-width:720px) {
-    nav {
-        flex-direction: column;
-        height: 40vh;
-    }
-
-    .navLink {
-        flex-direction: column;
-        min-height: 20vh;
-    }
-
-    .accounts {
-        flex-direction: column;
-    }
-
-    header {
-        height: 45vh;
-    }
-
-    .imgLogo {
-        height: 15vh;
-    }
-}
 
 /* ---------------------------------------CARD----------------------------------------------- */
 .containerCRD {
@@ -322,7 +331,7 @@ footer {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    justify-content: center !important;    
+    justify-content: center !important;
 }
 
 
@@ -436,7 +445,7 @@ footer {
     transform: rotateY(-180deg) !important;
 }
 
-.newCard{
+.newCard {
     margin-top: 2rem !important;
     width: 30vw !important;
 }
@@ -500,11 +509,11 @@ footer {
     gap: 40px !important;
 }
 
-.modal-title{
+.modal-title {
     width: 100% !important;
     text-align: center !important;
     color: #ffd277;
-    background-color:rgb(37, 3, 68) !important;
+    background-color: rgb(37, 3, 68) !important;
 }
 
 .price {
@@ -565,4 +574,111 @@ footer {
     font-size: 18px !important;
     font-weight: 600 !important;
     color: #47484b !important;
+}
+
+.transferInp{
+    width: 40vw;
+}
+
+.forChe{
+    padding-left: 2rem !important;
+    min-height: 10px !important;
+}
+
+@media(max-width:720px) {
+    h1 {
+        width: auto;
+    }
+
+    .warninAdmin {
+        width: 90vw;
+    }
+
+    nav {
+        flex-direction: column;
+        height: 40vh !important;
+    }
+
+    .navLink {
+        flex-direction: column;
+        align-items: center;
+        min-height: 30vh;
+        width: 30vh;
+    }
+
+    .contLoan {
+        flex-direction: column;
+    }
+
+    .contImgFoot {
+        display: flex;
+        width: 40vw;
+    }
+
+    .card {
+        width: 90vw !important;
+    }
+
+    .accounts {
+        flex-direction: column;
+        width: 95vw;
+    }
+
+    header {
+        height: 63vh;
+    }
+
+    .imgLogo {
+        display: none !important;
+    }
+
+    footer {
+        width: 100vw;
+    }
+
+    .slogan {
+        display: none;
+    }
+}
+
+@media(min-width: 721px) and (max-width:1330px) {
+    header {
+        height: 30vh;
+    }
+
+    .warninAdmin {
+        width: 84vw;
+    }
+
+    .card {
+        
+        width: 47vw !important;
+    }
+
+    .contImgFoot {
+        display: flex;
+        width: 20vw;
+    }
+
+    .accounts {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
+
+    footer {
+        padding-right: 0 !important;
+    }
+
+    .navLink {
+        margin-top: 0px !important;
+        width: 95vh;
+    }
+
+    h1 {
+        width: 30vw;
+    }
+
+    h2 {
+        margin-top: 16px !important;
+    }
 }

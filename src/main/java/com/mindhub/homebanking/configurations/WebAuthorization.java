@@ -17,18 +17,18 @@ import javax.servlet.http.HttpSession;
 public class WebAuthorization extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/index.html").permitAll()
-                .antMatchers("/web/assets/pages/login.html").permitAll()
-                .antMatchers("/web/assets/style/**").permitAll()
-                .antMatchers("/web/assets/scripts/**").permitAll()
-                .antMatchers("/web/accounts.html").hasAuthority("CLIENT")
+        http.authorizeRequests().antMatchers("/index.html", "/web/assets/pages/login.html", "/web/assets/style/**",
+                        "/web/assets/scripts/login.js", "/web/assets/images/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/login" , "/api/clients").permitAll()
-                .antMatchers("/api/clients/current/**").hasAuthority("CLIENT")
-                .antMatchers(HttpMethod.POST, "/api/clients/current/**").hasAuthority("CLIENT")
+                .antMatchers("/admin/**","/h2-console/**").hasAuthority("ADMIN")
+                .antMatchers("/rest/**").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.GET, "/api/clients").hasAuthority("ADMIN")
-                .antMatchers("/admin/**").hasAuthority("ADMIN")
-                .antMatchers("/rest/**").hasAuthority("ADMIN");
+                .antMatchers(HttpMethod.POST, "/rest/**", "/api/admin/loans").hasAuthority("ADMIN")
+                .antMatchers("/web/**").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.GET, "/api/clients/current/**", "/api/accounts/{id}", "/api/loans").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.POST, "/api/clients/current/**", "/api/loans", "/api/loans/payments").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.PATCH, "/api/clients/current/accounts","/api/clients/current/cards").hasAuthority("CLIENT")
+                .anyRequest().denyAll();
         http.formLogin()
                 .usernameParameter("email")
                 .passwordParameter("password")

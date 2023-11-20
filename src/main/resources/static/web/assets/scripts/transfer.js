@@ -2,7 +2,7 @@ const app = Vue.createApp({
   data() {
     return {
       accounts: {},
-      amount: 0,
+      amount: null,
       description: "",
       originNumber: "",
       destinationNumber: "",

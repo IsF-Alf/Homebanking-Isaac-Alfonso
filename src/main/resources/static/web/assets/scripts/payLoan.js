@@ -3,31 +3,43 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
-      clientsInformation: {},
+      client: {},
       accounts: [],
       loans: [],
-      accountType: null,
-      userEmail:"",
+      amount: null,
+      idLoan: 0,
+      idAccount: 0,
     };
   },
   created() {
     axios
       .get("/api/clients/current")
       .then((response) => {
-        console.log(response)
         client = response.data;
-        this.clientsInformation = client;
         console.log(client);
-        this.accounts = client.accounts;
-        this.accounts.sort((a, b) => a.id - b.id);
-        console.log(this.accounts);
         this.loans = client.loans;
         console.log(this.loans);
-        this.userEmail = client.email;
+        this.accounts = client.accounts;
+        console.log(this.accounts);
       })
-      .catch((error) => console.log(error));
+      .catch((err) => console.log(err));
   },
   methods: {
+    payLoan() {
+      axios
+        .post(
+          `/api/loans/payments`,
+          `idLoan=${this.idLoan}&idAccount=${this.idAccount}&amount=${this.amount}`
+        )
+        .then(() => {
+          alert("Your payment was successful")
+          location.pathname = `/web/assets/pages/payLoan.html`;
+        })
+        .catch((error) => {
+          alert(error.response.data)
+          console.log(error);
+        });
+    },
     logoutClient() {
       axios
         .post("/api/logout")

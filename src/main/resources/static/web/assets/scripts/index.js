@@ -26,7 +26,7 @@ createApp({
     logoutClient() {
       axios.post("/api/logout").then((response) => {
         console.log("signed out!!!");
-        location.href = "http://localhost:8080";
+        location.pathname = `/index.html`;
       });
     },
     registerClient() {

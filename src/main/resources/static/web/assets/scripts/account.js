@@ -17,6 +17,7 @@ createApp({
       .then((accountsAll) => {
         this.accounts = accountsAll.data;
         this.transactions = this.accounts.transactions;
+        this.transactions.sort((a, b) => b.id - a.id);
         this.account = this.accounts.number;
         console.log(this.accounts);
         console.log(this.accounts.transactions);
@@ -29,7 +30,7 @@ createApp({
         .post("/api/logout")
         .then((response) => {
           console.log("signed out!!!");
-          location.href = "http://localhost:8080";
+          location.pathname = `/index.html`;
         })
         .catch((error) => console.log(error));
     },

@@ -27,53 +27,58 @@
                 <button class="Btn" type="button" @click.prevent="logoutClient()" data-text="logout">logout</button>
             </div>
         </header>
-        <main class=" d-flex align-items-center flex-column mainAccount">
-            <div class="input-group mb-3">
-                <select v-model="originNumber" class="form-select" aria-label="Default select example">
-                    <option value="">Origin account</option>
-                    <option v-for="account of accounts" :value="account.number">{{account.number}} (Balance: US${{account.balance }})</option>
-                </select>
-            </div>
-            <div class="form-check">
-                <p class="d-inline-flex gap-1">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
-                        data-bs-toggle="collapse" href="#collapseExample" aria-expanded="false"
-                        aria-controls="collapseExample">
-                    <label class="form-check-label" for="flexRadioDefault1">
-                        Transfer to own account
-                    </label>
-                <div class="collapse" id="collapseExample">
-                    <select v-model="destinationNumber" class="form-select" aria-label="Default select example">
-                        <option value="" selected>Select your account</option>
-                        <option v-for="account of accounts">{{account.number}}</option>
+        <main class=" d-flex align-items-center flex-column mainWithForm">
+            <div class=" transferInp">
+                <div class="input-group">
+                    <select v-model="originNumber" class="form-select" aria-label="Default select example">
+                        <option value="">Origin account</option>
+                        <option v-for="account of accounts" :value="account.number">{{account.number}} (Balance:
+                            US${{account.balance }})</option>
                     </select>
                 </div>
-                </p>
-            </div>
-            <div class="form-check">
-                <p class="d-inline-flex gap-1">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-                        data-bs-toggle="collapse" href="#collapse" aria-expanded="false" aria-controls="collapse">
-                    <label class="form-check-label" for="flexRadioDefault1">
-                        Transfer to third party account
-                    </label>
-                <div class="collapse" id="collapse">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">N°</span>
-                        <input v-model="destinationNumber" type="text" class="form-control"
-                            aria-label="Default select example">
+                <p class="mb-0 mt-1">Please enter the account to which you will make the transfer</p>
+                <div class="form-check forChe">
+                    <p class="mb-0">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                            data-bs-toggle="collapse" href="#collapseExample" aria-expanded="false"
+                            aria-controls="collapseExample">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Transfer to own account
+                        </label>
+                    <div class="collapse" id="collapseExample">
+                        <select v-model="destinationNumber" class="form-select" aria-label="Default select example">
+                            <option value="" selected>Select your account</option>
+                            <option v-for="account of accounts">{{account.number}}</option>
+                        </select>
                     </div>
+                    </p>
                 </div>
-                </p>
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text">US$</span>
-                <input v-model="amount" type="number" class="form-control" aria-label="Amount (to the nearest dollar)"
-                    x>
-            </div>
-            <div class="input-group">
-                <span class="input-group-text">Description</span>
-                <textarea v-model="description" class="form-control" aria-label="With textarea"></textarea>
+                <div class="form-check forChe">
+                    <p class="mb-0">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                            data-bs-toggle="collapse" href="#collapse" aria-expanded="false" aria-controls="collapse">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Transfer to third party account
+                        </label>
+                    <div class="collapse" id="collapse">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">N°</span>
+                            <input v-model="destinationNumber" type="text" class="form-control"
+                                aria-label="Default select example">
+                        </div>
+                    </div>
+                    </p>
+                </div>
+                <p class="mb-0 mt-1">Please, enter the amount that you wish to transfer</p>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">US$</span>
+                    <input v-model="amount" type="number" class="form-control"
+                        aria-label="Amount (to the nearest dollar)" x>
+                </div>
+                <div class="input-group">
+                    <p class="mb-0 mt-1">Description</p>
+                    <textarea v-model="description" class="form-control" aria-label="With textarea"></textarea>
+                </div>
             </div>
             <button type="button" class="Btn" @click.prevent="generateTransfer" data-text="Confirm transfer">Confirm
                 transfer</button>

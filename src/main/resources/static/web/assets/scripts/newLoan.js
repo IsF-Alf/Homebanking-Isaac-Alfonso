@@ -3,31 +3,35 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
-      clientsInformation: {},
-      accounts: [],
       loans: [],
-      accountType: null,
-      userEmail:"",
+      loanName: "",
+      maxAmount: 0,
+      payments: [],
+      interestPercentage: 0,
     };
   },
   created() {
     axios
       .get("/api/clients/current")
       .then((response) => {
-        console.log(response)
         client = response.data;
-        this.clientsInformation = client;
         console.log(client);
-        this.accounts = client.accounts;
-        this.accounts.sort((a, b) => a.id - b.id);
-        console.log(this.accounts);
-        this.loans = client.loans;
-        console.log(this.loans);
-        this.userEmail = client.email;
       })
-      .catch((error) => console.log(error));
+      .catch((err) => console.log(err));
   },
   methods: {
+    createNewLoan() {
+      const newLoan = `name=${this.loanName}&maxAmount=${this.maxAmount}&payments=${this.payments}&interestPercentage=${this.interestPercentage}`;
+      axios
+        .post("/api/admin/loans", newLoan)
+        .then((result) => {
+          location.pathname = `/web/accounts.htmll`;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
     logoutClient() {
       axios
         .post("/api/logout")

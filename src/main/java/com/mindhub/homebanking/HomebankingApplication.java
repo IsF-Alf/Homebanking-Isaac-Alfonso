@@ -33,14 +33,14 @@ public class HomebankingApplication {
 //    {
 //        return args -> {
 ////            --------------------------------------------------CLIENTS------------------------------------------------------------------
-//            Client isaac = new Client("Isaac", "Alfonso", "ifa24991@gmail.com", passwordEncoder.encode("isaac1"));
+//            Client isaac = new Client("Isaac", "Alfonso", "ifa.mindbank@gmail.com", passwordEncoder.encode("isaac1"));
 //            clientRepository.save(isaac);
 //
 //            Client melba = new Client("Melba", "Morel", "melba_m@gmail.com", passwordEncoder.encode("melba1"));
 //            clientRepository.save(melba);
 //
-//            Client admin1 = new Client("Jack", "Sparrow", "js.mindbank@gmail.com", passwordEncoder.encode("jack1"));
-//            clientRepository.save(admin1);
+//            Client jack = new Client("Jack", "Sparrow", "js.mindbank@gmail.com", passwordEncoder.encode("jack1"));
+//            clientRepository.save(jack);
 //
 //
 ////            --------------------------------------------------ACCOUNTS------------------------------------------------------------------
@@ -55,14 +55,19 @@ public class HomebankingApplication {
 //            accountRepository.save(account2Melba);
 //
 ////            # ACCOUNTS ISAAC
-//            Account account1Isaac = new Account("IFA - 001", LocalDate.now(), 8000.00, true, AccountType.SAVINGS);
+//            Account account1Isaac = new Account("IFA - 001", LocalDate.now(), 85000.00, true, AccountType.SAVINGS);
 //            isaac.addAccount(account1Isaac);
 //            accountRepository.save(account1Isaac);
 //
-//            Account account2Isaac = new Account("IFA - 002", LocalDate.now().plusDays(3), 5000.00, true,
+//            Account account2Isaac = new Account("IFA - 002", LocalDate.now().plusDays(3), 170000.00, true,
 //                    AccountType.CURRENT);
 //            isaac.addAccount(account2Isaac);
 //            accountRepository.save(account2Isaac);
+//
+//            //            # ACCOUNTS JACK
+//            Account account1Jack = new Account("JSP - 001", LocalDate.now(), 8500.00, true, AccountType.SAVINGS);
+//            jack.addAccount(account1Jack);
+//            accountRepository.save(account1Jack);
 //
 //
 ////            --------------------------------------------------TRANSACTIONS------------------------------------------------------------------
@@ -89,8 +94,8 @@ public class HomebankingApplication {
 //
 ////            # TRANSACTIONS ISAAC
 //            Transaction transaction1Isaac = new Transaction(CREDIT, 1400.00, "This is a test transaction 1",
-//                    LocalDateTime.now(), account1Isaac.getBalance(), true);
-//            account1Isaac.addTransaction(transaction1Isaac);
+//                    LocalDateTime.now(), account1Jack.getBalance(), true);
+//            account1Jack.addTransaction(transaction1Isaac);
 //            transactionRepository.save(transaction1Isaac);
 //
 //            Transaction transaction2Isaac = new Transaction(CREDIT, 1400.00, "This is a test transaction 2",
@@ -130,13 +135,13 @@ public class HomebankingApplication {
 //
 ////            # LOANS ISAAC
 //            ClientLoan loan1Isaac = new ClientLoan(100000.00 + (100000.00 * personal.getInterestRate()), 24,
-//                    100000.00 + (100000.00 * personal.getInterestRate()), 24);
+//                    100000.00 + (100000.00 * personal.getInterestRate()) - 98000.00, 10);
 //            isaac.addClientLoan(loan1Isaac);
 //            personal.addClientLoan(loan1Isaac);
 //            clientLoanRepository.save(loan1Isaac);
 //
 //            ClientLoan loan2Isaac = new ClientLoan(200000.00 + (200000.00 * automotive.getInterestRate()), 36,
-//                    200000.00 + (200000.00 * automotive.getInterestRate()), 36);
+//                    200000.00 + (200000.00 * automotive.getInterestRate()) - 155000.00, 10);
 //            isaac.addClientLoan(loan2Isaac);
 //            automotive.addClientLoan(loan2Isaac);
 //            clientLoanRepository.save(loan2Isaac);

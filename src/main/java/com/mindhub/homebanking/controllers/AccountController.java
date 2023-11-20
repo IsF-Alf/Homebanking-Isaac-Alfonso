@@ -76,7 +76,7 @@ public class AccountController {
         }
     }
 
-    @PutMapping("/clients/current/accounts")
+    @PatchMapping("/clients/current/accounts")
     public ResponseEntity<Object> deleteAccount(Authentication authentication, @RequestParam Long id) {
         Client client = clientService.findClientByEmail(authentication.getName());
         Account account = accountService.findById(id);
