@@ -65,6 +65,11 @@ createApp({
           location.pathname = `/web/accounts.html`;
         })
         .catch((error) => {
+          Swal.fire({
+            icon: "error",
+            text: error.response.data,
+            confirmButtonColor: "#ff0000",
+          });
           alert(error.response.data);
         });
     },
