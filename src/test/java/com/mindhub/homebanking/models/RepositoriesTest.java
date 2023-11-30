@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -40,13 +39,13 @@ public class RepositoriesTest {
 
     @Test
     public void existAccountByNumber() {
-        Account account = accountRepository.findByNumber("VIN001");
+        Account account = accountRepository.findByNumber("VIN - 001");
         assertThat(account, is(notNullValue()));
     }
 
     @Test
     public void existAccountById() {
-        Account account = accountRepository.findById(3L).orElse(null);
+        Account account = accountRepository.findById(4L).orElse(null);
         assertThat(account, is(notNullValue()));
     }
 
@@ -60,19 +59,19 @@ public class RepositoriesTest {
 
     @Test
     public void existCardByNumber() {
-        Boolean card = cardRepository.existsByNumber("1010 2584 6958 9387");
+        Boolean card = cardRepository.existsByNumber("5555 6666 7777 8888");
         assertThat(card, is(true));
     }
 
     @Test
     public void existClientByEmail() {
-        Boolean client = clientRepository.existsClientByEmail("juanperez@savingsbank.com");
+        Boolean client = clientRepository.existsClientByEmail("melba_m@gmail.com");
         assertThat(client, is(true));
     }
 
     @Test
     public void existFirstNameProperty() {
-        Client client = clientRepository.findByEmail("melba@mindhub.com");
+        Client client = clientRepository.findByEmail("melba_m@gmail.com");
         assertThat(client, (hasProperty("firstName", is("Melba"))));
     }
 
