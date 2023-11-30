@@ -45,12 +45,15 @@ createApp({
               }, 1600);
             })
             .catch((error) => {
-              console.log(error);
+              Swal.fire({
+                icon: "error",
+                text: error.response.data,
+                confirmButtonColor: "#ff0000",
+              });
             });
         }
       });
     },
-
     logoutClient() {
       axios
         .post("/api/logout")
@@ -68,28 +71,6 @@ createApp({
           console.log("signed out!!!");
         })
         .catch((error) => console.log(error));
-    },
-    createAccount() {
-      axios
-        .post(
-          `/api/clients/current/accounts`,
-          `accountType=${this.accountType}`
-        )
-        .then((response) => {
-          console.log("created");
-          location.reload();
-        })
-        .catch((error) => console.log("error"));
-    },
-    deleteAccount(id) {
-      axios
-        .patch(`/api/clients/current/accounts`, `id=${id}`)
-        .then(() => {
-          location.pathname = `/web/accounts.html`;
-        })
-        .catch((error) => {
-          alert(error.response.data);
-        });
     },
   },
 }).mount("#app");
