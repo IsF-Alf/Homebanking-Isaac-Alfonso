@@ -32,7 +32,7 @@
             <div>
                 <h3 class="text-center">Debit cards</h3>
                 <div class="containerCRD" v-for="card of debitCard" v-if="debitCard.length> 0">
-                    <div class="cardCRD" :class="{'cardThruDate': card.thruDate < currentDate.toLocaleDateString()}">
+                    <div class="cardCRD" :class="{'cardThruDate': card.thruDate > currentDate.toLocaleDateString()}">
                         <div class="card-innerCRD">
                             <div class="frontCRD" :class="{
                                 'cardGold': card.color === 'GOLD',
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                     </div>
-                    <p v-if="card.thruDate < currentDate.toLocaleDateString()">Expired card</p>
+                    <p v-if="card.thruDate > currentDate.toLocaleDateString()">Expired card</p>
                     <div>
                         <a class="Btn" @click.prevent="deleteCard(card.id)" data-text="Delete Card">Delete Card</a>
                     </div>
@@ -89,7 +89,7 @@
             <div>
                 <h3 class="text-center">Credit cards</h3>
                 <div class="containerCRD" v-for="card of creditCard" v-if="creditCard.length> 0">
-                    <div class="cardCRD" :class="{'cardThruDate': card.thruDate < currentDate.toLocaleDateString()}">
+                    <div class="cardCRD" :class="{'cardThruDate': card.thruDate > currentDate.toLocaleDateString()}">
                         <div class="card-innerCRD">
                             <div class="frontCRD" :class="{
                                 'cardGold': card.color === 'GOLD',
@@ -136,7 +136,7 @@
                             </div>
                         </div>
                     </div>
-                    <p v-if="card.thruDate < currentDate.toLocaleDateString()">Expired card</p>
+                    <p v-if="card.thruDate > currentDate.toLocaleDateString()">Expired card</p>
                     <div>
                         <a class="Btn" @click.prevent="deleteCard(card.id)" data-text="Delete Card">Delete Card</a>
                     </div>
@@ -158,6 +158,7 @@
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../scripts/card.js"></script>
 </body>
 

@@ -29,8 +29,17 @@ createApp({
       axios
         .post("/api/logout")
         .then((response) => {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Logged out successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          }),
+            setTimeout(() => {
+              location.pathname = `/index.html`;
+            }, 1600);
           console.log("signed out!!!");
-          location.pathname = `/index.html`;
         })
         .catch((error) => console.log(error));
     },

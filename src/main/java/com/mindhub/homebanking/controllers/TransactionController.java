@@ -41,7 +41,6 @@ public class TransactionController {
         if (client == null) {
             return new ResponseEntity<>("Unknow client " + authentication.getName(), HttpStatus.UNAUTHORIZED);
         }
-
         if (accountDebit.getClient() != client) {
             return new ResponseEntity<>("The origin account doesn´t belong to the authenticated client",
                     HttpStatus.FORBIDDEN);

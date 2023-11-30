@@ -49,41 +49,35 @@ public class LoanController {
         Client client = clientService.findClientByEmail(authentication.getName());
         Loan loan = loanService.findLoanById(loanApplicationDTO.getIdLoan());
         Account account = accountService.findAccountByNumber(loanApplicationDTO.getDestinationAccount());
-        if (client == null) {
-            return new ResponseEntity<>("Unknow client " + authentication.getName(), HttpStatus.UNAUTHORIZED);
-        }
         if (loanApplicationDTO.getIdLoan() == 0) {
             return new ResponseEntity<>("The type of loan is required", HttpStatus.FORBIDDEN);
         }
         if (loanApplicationDTO.getAmount() == 0) {
             return new ResponseEntity<>("The amount of loan is required", HttpStatus.FORBIDDEN);
         }
-        if (loanApplicationDTO.getAmount() <= 0){
-            return new ResponseEntity<>("The amount cannot be zero or negative",
-                    HttpStatus.FORBIDDEN);
-        }
-        if (loanApplicationDTO.getPayments() == 0) {
-            return new ResponseEntity<>("The number of payments is required", HttpStatus.FORBIDDEN);
+        if (loanApplicationDTO.getAmount() <= 0) {
+            return new ResponseEntity<>("The amount cannot be zero or negative", HttpStatus.FORBIDDEN);
         }
         if (loanApplicationDTO.getDestinationAccount().isBlank()) {
             return new ResponseEntity<>("The destination account is required", HttpStatus.FORBIDDEN);
         }
-        if(loan == null){
+        if (loan == null) {
             return new ResponseEntity<>("The loan doesn´t exist", HttpStatus.FORBIDDEN);
         }
-        if (loanApplicationDTO.getAmount() > loan.getMaxAmount()){
+        if (loanApplicationDTO.getAmount() > loan.getMaxAmount()) {
             return new ResponseEntity<>("The requested amount exceeds the maximum loan amount", HttpStatus.FORBIDDEN);
         }
-        if (!loan.getPayments().contains(loanApplicationDTO.getPayments())){
+        if (!loan.getPayments().contains(loanApplicationDTO.getPayments())) {
             return new ResponseEntity<>("The amount of payments is incorrect", HttpStatus.FORBIDDEN);
         }
-        if (account == null){
+        if (account == null) {
             return new ResponseEntity<>("The destination account doesn´t exist", HttpStatus.FORBIDDEN);
         }
-        if (!client.getAccounts().contains(account)){
-            return new ResponseEntity<>("The destination account doesn´t belong to the authenticated client", HttpStatus.FORBIDDEN);
+        if (!client.getAccounts().contains(account)) {
+            return new ResponseEntity<>("The destination account doesn´t belong to the authenticated client",
+                    HttpStatus.FORBIDDEN);
         }
-        if (loan.getClients().contains(client)){
+        if (loan.getClients().contains(client)) {
             return new ResponseEntity<>("You have already applied for this loan", HttpStatus.FORBIDDEN);
         } else {
             ClientLoan clientLoan = new ClientLoan(
@@ -108,9 +102,8 @@ public class LoanController {
 
     @PostMapping("/admin/loans")
     public ResponseEntity<Object> createNewLoan(Authentication authentication, @RequestParam String name,
-                                                    @RequestParam Double maxAmount,
-                                                    @RequestParam List<Integer> payments,
-                                                    @RequestParam Double interestPercentage)
+                                                @RequestParam Double maxAmount, @RequestParam List<Integer> payments,
+                                                @RequestParam Double interestPercentage)
     {
         Client client = clientService.findClientByEmail(authentication.getName());
         if (name.isEmpty() || name.isBlank()) {
@@ -155,8 +148,9 @@ public class LoanController {
         if (!clientLoan.getClient().equals(client)) {
             return new ResponseEntity<>("The loan doesn't belong to the authenticated client", HttpStatus.FORBIDDEN);
         }
-        if (amount != roundedInstallmentValue){
-            return new ResponseEntity<>("The amount entered does not correspond to the payment of 1 installment. Your amount to pay is US$ " + roundedInstallmentValue,
+        if (amount != roundedInstallmentValue) {
+            return new ResponseEntity<>(
+                    "The amount entered does not correspond to the payment of 1 installment. Your amount to pay is US$ " + roundedInstallmentValue,
                     HttpStatus.FORBIDDEN);
         }
         if (account == null) {

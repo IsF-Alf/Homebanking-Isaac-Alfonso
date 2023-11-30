@@ -30,8 +30,6 @@ public class ClientDTO {
                 Collectors.toSet());
     }
 
-    //.filter(card -> card.getActive())
-    //.filter(card -> card.getActive())
     public Long getId() {
         return id;
     }

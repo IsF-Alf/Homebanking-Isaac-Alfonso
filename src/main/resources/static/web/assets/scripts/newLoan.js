@@ -21,23 +21,51 @@ createApp({
   },
   methods: {
     createNewLoan() {
-      const newLoan = `name=${this.loanName}&maxAmount=${this.maxAmount}&payments=${this.payments}&interestPercentage=${this.interestPercentage}`;
-      axios
-        .post("/api/admin/loans", newLoan)
-        .then((result) => {
-          location.pathname = `/web/accounts.htmll`;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      Swal.fire({
+        title: "Are you sure?",
+        text: "Are you sure you want to create this loan?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, create this loan!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const newLoan = `name=${this.loanName}&maxAmount=${this.maxAmount}&payments=${this.payments}&interestPercentage=${this.interestPercentage}`;
+          axios
+            .post("/api/admin/loans", newLoan)
+            .then((result) => {
+              Swal.fire({
+                title: "Created!",
+                text: "The loan has been created successfully",
+                icon: "success",
+              });
+              setTimeout(() => {
+                location.pathname = `/web/accounts.html`;
+              }, 1600);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+      });
     },
 
     logoutClient() {
       axios
         .post("/api/logout")
         .then((response) => {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Logged out successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          }),
+            setTimeout(() => {
+              location.pathname = `/index.html`;
+            }, 1600);
           console.log("signed out!!!");
-          location.pathname = `/index.html`;
         })
         .catch((error) => console.log(error));
     },

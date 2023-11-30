@@ -32,11 +32,19 @@ createApp({
           `idLoan=${this.idLoan}&idAccount=${this.idAccount}&amount=${this.amount}`
         )
         .then(() => {
-          alert("Your payment was successful")
-          location.pathname = `/web/assets/pages/payLoan.html`;
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your payment was successful",
+            showConfirmButton: false,
+            timer: 1500,
+          }),
+            setTimeout(() => {
+              location.pathname = "/web/assets/pages/payLoan.html";
+            }, 1600);
         })
         .catch((error) => {
-          alert(error.response.data)
+          alert(error.response.data);
           console.log(error);
         });
     },
@@ -44,8 +52,17 @@ createApp({
       axios
         .post("/api/logout")
         .then((response) => {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Logged out successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          }),
+            setTimeout(() => {
+              location.pathname = `/index.html`;
+            }, 1600);
           console.log("signed out!!!");
-          location.pathname = `/index.html`;
         })
         .catch((error) => console.log(error));
     },

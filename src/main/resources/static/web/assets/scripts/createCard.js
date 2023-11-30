@@ -17,21 +17,37 @@ createApp({
           `type=${this.cardType}&color=${this.cardColor}`
         )
         .then((response) => {
-          location.pathname = "/web/assets/pages/card.html";
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your card was created successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          }),
+            setTimeout(() => {
+              location.pathname = "/web/assets/pages/card.html";
+            }, 1600);          
         })
         .catch((error) => 
         this.messageError = error.response.data);
     },
     logoutClient() {
       axios
-        .post(`/api/logout`)
+        .post("/api/logout")
         .then((response) => {
-          console.log("SingOut");
-          location.pathname = `/index.html`;
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Logged out successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          }),
+            setTimeout(() => {
+              location.pathname = `/index.html`;
+            }, 1600);
+          console.log("signed out!!!");
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => console.log(error));
     },
   },
   

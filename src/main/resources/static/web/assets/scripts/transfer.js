@@ -27,21 +27,37 @@ const app = Vue.createApp({
           `amount=${this.amount}&description=${this.description}&originNumber=${this.originNumber}&destinationNumber=${this.destinationNumber}`
         )
         .then(() => {
-          location.pathname = `/web/assets/pages/transfers.html`;
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your transaction was successful",
+            showConfirmButton: false,
+            timer: 1500,
+          }),
+            setTimeout(() => {
+              location.pathname = `/web/assets/pages/transfers.html`;
+            }, 1600);
         })
         .catch((error) => console.log(error));
     },
   },
   logoutClient() {
     axios
-      .post(`/api/logout`)
+      .post("/api/logout")
       .then((response) => {
-        console.log("SingOut");
-        location.pathname = `/index.html`;
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Logged out successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        }),
+          setTimeout(() => {
+            location.pathname = `/index.html`;
+          }, 1600);
+        console.log("signed out!!!");
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => console.log(error));
   },
 });
 app.mount("#app");

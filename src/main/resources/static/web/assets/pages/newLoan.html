@@ -27,80 +27,83 @@
                 <button class="Btn" type="button" @click.prevent="logoutClient()" data-text="logout">logout</button>
             </div>
         </header>
-        <main class=" d-flex align-items-center flex-column mainAccount">
-            <div class="d-flex flex-column align-items-center w-75 gap">
-                <div class="input-group w-50">
-                    <span class="input-group-text">Loan name</span>
-                    <input v-model="loanName" type="text" class="form-control"
-                        aria-label="Amount (to the nearest dollar)" x>
-                </div>
-                <div class="input-group w-50">
-                    <span class="input-group-text">Maximum amount US$</span>
-                    <input v-model="maxAmount" type="number" class="form-control"
-                        aria-label="Amount (to the nearest dollar)" x>
-                </div>
-                <div class="input-group flex-column w-50">
-                    <p>Payments (select all the options you want)</p>
-                    <div class="d-flex justify-content-between w-75 chekNewLoan">
-                        <div class="form-check">
-                            <input v-model="payments" class="form-check-input" type="checkbox" value="6"
-                                id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                6
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input v-model="payments" class="form-check-input" type="checkbox" value="12"
-                                id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                12
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input v-model="payments" class="form-check-input" type="checkbox" value="18"
-                                id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                18
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input v-model="payments" class="form-check-input" type="checkbox" value="24"
-                                id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                24
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input v-model="payments" class="form-check-input" type="checkbox" value="30"
-                                id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                30
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input v-model="payments" class="form-check-input" type="checkbox" value="36"
-                                id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                36
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input v-model="payments" class="form-check-input" type="checkbox" value="48"
-                                id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                48
-                            </label>
+        <main class=" d-flex align-items-center flex-column mainNewLoan">
+            <div class=" d-flex align-items-center flex-column transferInpNL">
+                <div class="d-flex flex-column align-items-center w-75 gap">
+                    <div class="input-group ">
+                        <span class="input-group-text spanNewLoan">Loan name</span>
+                        <input v-model="loanName" type="text" class="form-control"
+                            aria-label="Amount (to the nearest dollar)" x>
+                    </div>
+                    <div class="input-group  m-2">
+                        <span class="input-group-text spanNewLoan">Maximum amount US$</span>
+                        <input v-model="maxAmount" type="number" class="form-control"
+                            aria-label="Amount (to the nearest dollar)" x>
+                    </div>
+                    <div class="input-group flex-column  m-2">
+                        <p>Payments (select all the options you want)</p>
+                        <div class="d-flex justify-content-between w-75 chekNewLoan">
+                            <div class="form-check">
+                                <input v-model="payments" class="form-check-input" type="checkbox" value="6"
+                                    id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    6
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input v-model="payments" class="form-check-input" type="checkbox" value="12"
+                                    id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    12
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input v-model="payments" class="form-check-input" type="checkbox" value="18"
+                                    id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    18
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input v-model="payments" class="form-check-input" type="checkbox" value="24"
+                                    id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    24
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input v-model="payments" class="form-check-input" type="checkbox" value="30"
+                                    id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    30
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input v-model="payments" class="form-check-input" type="checkbox" value="36"
+                                    id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    36
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input v-model="payments" class="form-check-input" type="checkbox" value="48"
+                                    id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    48
+                                </label>
+                            </div>
                         </div>
                     </div>
+                    <div class="input-group ">
+                        <p class="spanNewLoan">Interest percentage % (Example: for 25% write 0.25)</p>
+                        <input v-model="interestPercentage" type="text" class="form-control"
+                            aria-label="Amount (to the nearest dollar)" x style="height: 27px !important;">
+                    </div>
                 </div>
-                <div class="input-group w-50">
-                    <p>Interest percentage % (Example: for 25% write 0.25)</p>
-                    <input v-model="interestPercentage" type="text" class="form-control"
-                        aria-label="Amount (to the nearest dollar)" x>
+                <div class="col-auto d-flex justify-content-around">
+                    <button @click.prevent="createNewLoan()" type="button" class="Btn"
+                        data-text="Create">Create</button>
                 </div>
-            </div>
-            <div class="col-auto d-flex justify-content-around">
-                <button @click.prevent="createNewLoan()" type="button" class="Btn" data-text="Create">Create</button>
             </div>
         </main>
         <footer class="d-flex justify-content-around align-items-center">
@@ -117,6 +120,7 @@
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../scripts/newLoan.js"></script>
 </body>
 

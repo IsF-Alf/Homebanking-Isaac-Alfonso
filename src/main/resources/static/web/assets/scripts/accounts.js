@@ -7,14 +7,14 @@ createApp({
       accounts: [],
       loans: [],
       accountType: null,
-      userEmail:"",
+      userEmail: "",
     };
   },
   created() {
     axios
       .get("/api/clients/current")
       .then((response) => {
-        console.log(response)
+        console.log(response);
         client = response.data;
         this.clientsInformation = client;
         console.log(client);
@@ -32,8 +32,17 @@ createApp({
       axios
         .post("/api/logout")
         .then((response) => {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Logged out successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          }),
+            setTimeout(() => {
+              location.pathname = `/index.html`;
+            }, 1600);
           console.log("signed out!!!");
-          location.pathname = `/index.html`;
         })
         .catch((error) => console.log(error));
     },

@@ -37,14 +37,14 @@ public class CardController {
             return new ResponseEntity<>("You already have the same card", HttpStatus.FORBIDDEN);
         }
         Card card = new Card((client.getFirstName().toUpperCase() + " " + client.getLastName().toUpperCase()), type,
-                color, generateNumber(), CardUtils.generateCvv() , LocalDate.now().plusYears(5), LocalDate.now(), true);
+                color, generatedNumber(), CardUtils.generateCvv() , LocalDate.now().plusYears(5), LocalDate.now(), true);
         cardService.saveCard(card);
         client.addCard(card);
         clientService.saveClient(client);
         return new ResponseEntity<>("Card created successfully", HttpStatus.CREATED);
     }
 
-    public String generateNumber() {
+    public String generatedNumber() {
         String numberGenerator;
         do {
            numberGenerator = CardUtils.generateNumber();
