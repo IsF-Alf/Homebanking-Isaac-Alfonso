@@ -174,7 +174,7 @@ public class LoanController {
             clientLoanService.saveClientLoan(clientLoan);
             accountService.saveAccount(account);
             double currentBalanceAccountDebit = account.getBalance() - amount;
-            Transaction transaction = new Transaction(TransactionType.DEBIT, amount, "Canceled fee" + loan + "loan",
+            Transaction transaction = new Transaction(TransactionType.DEBIT, amount, "Canceled fee " + loan + " loan",
                     LocalDateTime.now(), currentBalanceAccountDebit, true);
             account.addTransaction(transaction);
             transactionService.saveTransaction(transaction);
