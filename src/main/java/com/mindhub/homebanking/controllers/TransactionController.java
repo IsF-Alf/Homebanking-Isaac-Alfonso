@@ -66,7 +66,7 @@ public class TransactionController {
                     true);
 
             Transaction transactionCredit = new Transaction(TransactionType.CREDIT, amount,
-                    accountCredit.getNumber() + description, LocalDateTime.now(), accountCredit.getBalance() + amount,
+                    accountCredit.getNumber() +" "+ description, LocalDateTime.now(), accountCredit.getBalance() + amount,
                     true);
 
             transactionService.saveTransaction(transactionDebit);
