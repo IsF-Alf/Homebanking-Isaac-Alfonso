@@ -29,7 +29,7 @@
             <h2>These are your cards</h2>
         </header>
         <main class="d-flex justify-content-center mainCard">
-            <div>
+            <div style=" margin-top: 5rem !important;">
                 <h3 class="text-center">Debit cards</h3>
                 <div class="containerCRD" v-for="card of debitCard" v-if="debitCard.length> 0">
                     <div class="cardCRD" :class="{'cardThruDate': card.thruDate > currentDate.toLocaleDateString()}">
