@@ -42,7 +42,13 @@ createApp({
             location.pathname = `/web/assets/pages/card.html`;
           }, 1600);          
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          Swal.fire({
+            icon: "error",
+            text: error.response.data,
+            confirmButtonColor: "#ff0000",
+          });
+        });
     },
     filterCredit() {
       this.creditCard = this.cards.filter((card) => card.type === "CREDIT");

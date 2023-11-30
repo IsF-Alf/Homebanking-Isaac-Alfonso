@@ -44,8 +44,11 @@ createApp({
             }, 1600);
         })
         .catch((error) => {
-          alert(error.response.data);
-          console.log(error);
+          Swal.fire({
+            icon: "error",
+            text: error.response.data,
+            confirmButtonColor: "#ff0000",
+          });
         });
     },
     logoutClient() {

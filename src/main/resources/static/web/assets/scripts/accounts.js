@@ -53,16 +53,16 @@ createApp({
           `accountType=${this.accountType}`
         )
         .then((response) => {
-          console.log("created");
-          location.reload();
-        })
-        .catch((error) => console.log("error"));
-    },
-    deleteAccount(id) {
-      axios
-        .patch(`/api/clients/current/accounts`, `id=${id}`)
-        .then(() => {
-          location.pathname = `/web/accounts.html`;
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your new account was created successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          }),
+            setTimeout(() => {
+              location.reload();
+            }, 1600);
         })
         .catch((error) => {
           Swal.fire({
@@ -70,7 +70,29 @@ createApp({
             text: error.response.data,
             confirmButtonColor: "#ff0000",
           });
-          alert(error.response.data);
+        });
+    },
+    deleteAccount(id) {
+      axios
+        .patch(`/api/clients/current/accounts`, `id=${id}`)
+        .then(() => {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your account was deleted successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          }),
+            setTimeout(() => {
+              location.pathname = `/web/accounts.html`;
+            }, 1600);
+        })
+        .catch((error) => {
+          Swal.fire({
+            icon: "error",
+            text: error.response.data,
+            confirmButtonColor: "#ff0000",
+          });
         });
     },
   },

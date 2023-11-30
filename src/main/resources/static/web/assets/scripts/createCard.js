@@ -28,8 +28,13 @@ createApp({
               location.pathname = "/web/assets/pages/card.html";
             }, 1600);          
         })
-        .catch((error) => 
-        this.messageError = error.response.data);
+        .catch((error) => {
+          Swal.fire({
+            icon: "error",
+            text: error.response.data,
+            confirmButtonColor: "#ff0000",
+          });
+        });
     },
     logoutClient() {
       axios
