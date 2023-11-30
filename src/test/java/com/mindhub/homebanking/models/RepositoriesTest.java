@@ -1,13 +1,12 @@
 package com.mindhub.homebanking.models;
 
-import com.mindhub.homebanking.models.Loan;
 import com.mindhub.homebanking.repositories.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -26,54 +25,65 @@ public class RepositoriesTest {
     CardRepository cardRepository;
     @Autowired
     TransactionRepository transactionRepository;
+
     @Test
-    public void existLoans(){
+    public void existLoans() {
         List<Loan> loans = loanRepository.findAll();
-        assertThat(loans,is(not(empty())));
+        assertThat(loans, is(not(empty())));
     }
+
     @Test
-    public void existPersonalLoan(){
+    public void existPersonalLoan() {
         List<Loan> loans = loanRepository.findAll();
         assertThat(loans, hasItem(hasProperty("name", is("Personal"))));
     }
+
     @Test
-    public void existAccountByNumber(){
+    public void existAccountByNumber() {
         Account account = accountRepository.findByNumber("VIN001");
-        assertThat(account,is(notNullValue()));
+        assertThat(account, is(notNullValue()));
     }
+
     @Test
-    public void existAccountById(){
+    public void existAccountById() {
         Account account = accountRepository.findById(3L).orElse(null);
-        assertThat(account,is(notNullValue()));
+        assertThat(account, is(notNullValue()));
     }
+
     @Test
-    public void existsCardByTypeAndColorAndClientAndActive(){
-        Client client = clientRepository.findByEmail("melba@mindhub.com");
-        Boolean card = cardRepository.existsCardByTypeAndColorAndClientAndActive(CardType.CREDIT, CardColor.TITANIUM , client, false);
-        assertThat(card,is(true));
+    public void existsCardByTypeAndColorAndClientAndActive() {
+        Client client = clientRepository.findByEmail("melba_m@gmail.com");
+        Boolean card = cardRepository.existsCardByTypeAndColorAndClientAndActive(CardType.CREDIT, CardColor.TITANIUM,
+                client, true);
+        assertThat(card, is(true));
     }
+
     @Test
-    public void existCardByNumber(){
+    public void existCardByNumber() {
         Boolean card = cardRepository.existsByNumber("1010 2584 6958 9387");
-        assertThat(card,is(true));
+        assertThat(card, is(true));
     }
+
     @Test
-    public void existClientByEmail(){
+    public void existClientByEmail() {
         Boolean client = clientRepository.existsClientByEmail("juanperez@savingsbank.com");
-        assertThat(client,is(true));
+        assertThat(client, is(true));
     }
+
     @Test
-    public void existFirstNameProperty(){
+    public void existFirstNameProperty() {
         Client client = clientRepository.findByEmail("melba@mindhub.com");
         assertThat(client, (hasProperty("firstName", is("Melba"))));
     }
+
     @Test
-    public void existTransactions(){
+    public void existTransactions() {
         List<Transaction> transactions = transactionRepository.findAll();
-        assertThat(transactions,is(not(empty())));
+        assertThat(transactions, is(not(empty())));
     }
+
     @Test
-    public void existDebitTransactionType(){
+    public void existDebitTransactionType() {
         List<Transaction> transaction = transactionRepository.findAll();
         assertThat(transaction, hasItem(hasProperty("type", is(TransactionType.DEBIT))));
     }
