@@ -33,6 +33,11 @@ createApp({
           console.log("signed in!!!");
         })
         .catch((error) => {
+          Swal.fire({
+            icon: "error",
+            text: error.response.data,
+            confirmButtonColor: "#ff0000",
+          });
           console.log(error.response.data);
         });
     },
