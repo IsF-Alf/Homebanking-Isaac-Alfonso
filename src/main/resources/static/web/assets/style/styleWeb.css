@@ -747,13 +747,54 @@ footer {
         width: 40vw;
     }
 
+    .widthForm {
+        width: 80vw;
+    }
+
     .card {
         width: 90vw !important;
     }
 
     .mainNewLoan{
+        margin-top: 6rem !important;
         flex-direction: column;
         width: 95vw;
+        height: 50vh !important;
+    }
+
+    .mainCard{
+        flex-direction: column;
+    }
+
+    .card-innerCRD {
+        width: 94% !important;
+    }
+
+    .mainAccount {
+        margin-top: 7rem !important;
+    }
+
+    .mainWithFormLoan {
+        margin-top: 6rem !important;
+    }
+
+    .frontCRD, .backCRD {
+        width: 89% !important;
+        height: 99%;
+    }
+
+
+    .cardCRD {
+        width: 372px !important;
+        height: 253px !important;
+    }
+
+    .containerCRD {
+        width: 119vw !important;
+    }
+
+    .mainNewLoan::before {
+        height: 78%;
     }
 
     .input-group{
@@ -813,12 +854,20 @@ footer {
     .imgHome {
         width: 75vw;
     }
+    .transferInp {
+        width: 90vw;
+    }
+
+    .mainPayLoan {
+        margin-top: 7rem !important;
+    }
 }
 
 @media(min-width: 721px) and (max-width:1330px) {
     header {
         height: 30vh;
     }
+
 
     .anchor{
         padding-right: 4rem !important;
