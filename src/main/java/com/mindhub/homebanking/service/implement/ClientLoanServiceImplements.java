@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClientLoanServiceImplements implements ClientLoanService {
     @Autowired
-    ClientLoanRepository clientLoanRepository;
+    private ClientLoanRepository clientLoanRepository;
 
     @Override
     public void saveClientLoan(ClientLoan clientLoan) {

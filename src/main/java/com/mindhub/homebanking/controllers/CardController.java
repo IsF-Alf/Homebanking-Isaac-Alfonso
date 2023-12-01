@@ -83,7 +83,7 @@ public class CardController {
     public ResponseEntity<Object> payWithCard(@RequestBody PaymentDTO paymentDTO) {
         Card cardUsed = cardService.findByNumber(paymentDTO.getNumber());
         Client client = clientService.findClientByEmail(paymentDTO.getEmail());
-        Boolean hasCard = client.getCards().stream().anyMatch(card -> card.getId() == cardUsed.getId());
+        boolean hasCard = client.getCards().stream().anyMatch(card -> card.getId() == cardUsed.getId());
         Optional<Account> optionalAccountToBeDebited = client.getAccounts().stream().filter(
                 acc -> acc.getBalance() >= paymentDTO.getAmount()).findFirst();
 

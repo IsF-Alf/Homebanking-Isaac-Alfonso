@@ -4,7 +4,7 @@ import com.mindhub.homebanking.models.CardType;
 
 public class PaymentDTO {
     private String number;
-    private String cvv;
+    private int cvv;
     private double amount;
     private String description;
     private CardType typeCard;
@@ -13,7 +13,7 @@ public class PaymentDTO {
     public PaymentDTO() {
     }
 
-    public PaymentDTO(String number, String cvv, Double amount, String description, CardType typeCard, String email) {
+    public PaymentDTO(String number, int cvv, Double amount, String description, CardType typeCard, String email) {
         this.number = number;
         this.cvv = cvv;
         this.amount = amount;
@@ -27,7 +27,7 @@ public class PaymentDTO {
         return number;
     }
 
-    public String getCvv() {
+    public int getCvv() {
         return cvv;
     }
 

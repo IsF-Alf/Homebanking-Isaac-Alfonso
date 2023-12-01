@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class CardServiceImplement implements CardService {
     @Autowired
-    CardRepository cardRepository;
+    private CardRepository cardRepository;
 
     @Override
     public Boolean existsCardByTypeAndColorAndClientAndActive(CardType type, CardColor color, Client client,
@@ -49,9 +49,7 @@ public class CardServiceImplement implements CardService {
     }
 
     @Override
-    public boolean existByCvv(String cvv) {
+    public boolean existByCvv(int cvv) {
         return cardRepository.existByCvv(cvv);
     }
-
-    ;
 }
