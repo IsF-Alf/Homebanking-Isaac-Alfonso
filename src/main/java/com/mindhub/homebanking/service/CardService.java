@@ -12,4 +12,6 @@ public interface CardService {
     Boolean existsCardByNumber (String number);
     Card findById (Long id);
     List<Card> findAll();
+    Card findByNumber(String number);
+    boolean existByCvv (String cvv);
 }
