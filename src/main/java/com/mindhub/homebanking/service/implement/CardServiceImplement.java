@@ -42,4 +42,16 @@ public class CardServiceImplement implements CardService {
     public List<Card> findAll() {
         return cardRepository.findAll();
     }
+
+    @Override
+    public Card findByNumber(String number) {
+        return cardRepository.findByNumber(number);
+    }
+
+    @Override
+    public boolean existByCvv(String cvv) {
+        return cardRepository.existByCvv(cvv);
+    }
+
+    ;
 }
