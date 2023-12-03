@@ -49,7 +49,7 @@ public class CardServiceImplement implements CardService {
     }
 
     @Override
-    public boolean existByCvv(int cvv) {
-        return cardRepository.existByCvv(cvv);
+    public boolean existsByCvv(int cvv) {
+        return cardRepository.existsByCvv(cvv);
     }
 }

@@ -90,7 +90,7 @@ public class CardController {
         if (paymentDTO.getNumber().isBlank() || !cardService.existsCardByNumber(paymentDTO.getNumber())) {
             return new ResponseEntity<>("The card number is invalid or does not exist", HttpStatus.FORBIDDEN);
         }
-        if (!cardService.existByCvv(paymentDTO.getCvv())) {
+        if (!cardService.existsByCvv(paymentDTO.getCvv())) {
             return new ResponseEntity<>("Invalid CVV", HttpStatus.FORBIDDEN);
         }
         if (paymentDTO.getTypeCard() == null) {
